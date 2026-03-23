@@ -3,131 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AJ's Data & AI Lab — Practitioner Perspectives on Data, AI & Engineering Leadership</title>
+<title>AJ's Data &amp; AI Lab — Practitioner Perspectives on Data, AI &amp; Engineering Leadership</title>
 <meta name="description" content="Practitioner perspectives on building modern data platforms, leading engineering teams at scale, and driving AI-first transformation — by Arnay Joshi.">
 <meta name="author" content="Arnay Joshi">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/ajs-lab-core.css">
+<link rel="stylesheet" href="./assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="./assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="./assets/css/ajs-lab-core-footer.css">
 </head>
 <body>
 
-<!-- ═══ NAVIGATION ═══ -->
-<nav class="site-nav">
-<div class="nav-inner">
-  <!--
-  <a class="nav-brand" href="index.html">
-    <img src="./assets/img/ajs-labs-logo-web.png" alt="AJ's Data & AI Lab">
-  </a>
-  -->
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <div class="nav-dropdown">
-      <a href="#">Pillars</a>
-      <div class="nav-dropdown-menu">
-        <a href="#"><span class="pillar-dot strategy"></span>Data & AI Strategy</a>
-        <a href="#"><span class="pillar-dot innovation"></span>Products & Platform Innovation</a>
-        <a href="#"><span class="pillar-dot delivery"></span>Delivery & Data Governance</a>
-        <a href="#"><span class="pillar-dot leadership"></span>Leadership & Business Impact</a>
-      </div>
-    </div>
-    <div class="nav-dropdown">
-      <a href="#">Streams</a>
-      <div class="nav-dropdown-menu">
-        <a href="practitioner-series/">Practitioner Series — Deep Dives</a>
-        <a href="quick-bytes/">Quick Bytes — 3 Key Pointers</a>
-        <a href="leadership-lens/">Leadership Lens — HBR Abstracts</a>
-        <a href="leading-with-ai/">Leading with AI — Curated Commentary</a>
-        <a href="ips-and-products/">IPs & Products — Lab Showcase</a>
-      </div>
-    </div>
-    <a href="#">About</a>
-    <a href="https://linkedin.com/in/arnayjoshi" target="_blank" rel="noopener" class="nav-contact">Connect ↗</a>
-  </div>
-</div>
-</nav>
-
-<!-- ═══ HERO (compact) ═══ -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <h1>Where <em>Data Meets</em><br>Leadership</h1>
-      <p class="hero-tagline">
-        Practitioner perspectives on building modern data platforms, leading engineering teams at scale, 
-        and driving AI-first transformation — from the trenches, not the textbook.
-      </p>
-      <div class="hero-pillars">
-        <span class="hero-pill strategy">Data & AI Strategy</span>
-        <span class="hero-pill innovation">Products & Platform Innovation</span>
-        <span class="hero-pill delivery">Delivery & Data Governance</span>
-        <span class="hero-pill leadership">Leadership & Business Impact</span>
-      </div>
-    </div>
-    <div class="hero-lab">
-      <div class="hero-lab-img">
-		<img 
-			src="./assets/img/ajs-labs-logo.png" 
-			alt="AJ's Data & AI Lab"
-			onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-		>
-        <div class="lab-visual" style="display:none; position:absolute; inset:0;">
-          <div class="lab-nodes">
-            <div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div>
-            <div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div>
-            <div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div><div class="lab-node"></div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-lab-caption">AJ's DATA & AI LAB</div>
-    </div>
-  </div>
-</section>
+<!-- ═══ NAV + HERO ═══ -->
+<script src="./assets/common/site-header-inject.js"></script>
 
 <!-- ═══ STREAM FILTER BAR ═══ -->
 <div class="streams-bar">
   <div class="streams-inner">
     <span class="streams-label">Stream:</span>
     <span class="stream-chip active" data-stream="all">All</span>
-    <span class="stream-chip" data-stream="practitioner">Practitioner Series</span>
-    <span class="stream-chip" data-stream="quickbytes">Quick Bytes</span>
-    <span class="stream-chip" data-stream="leadership-lens">Leadership Lens</span>
-    <span class="stream-chip" data-stream="leading-ai">Leading with AI</span>
-    <span class="stream-chip" data-stream="ips">IPs & Products</span>
+    <span class="stream-chip" data-stream="practitioner" data-content="streams.practitioner.label">Practitioner Series</span>
+    <span class="stream-chip" data-stream="quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
+    <span class="stream-chip" data-stream="executive" data-content="streams.executive.label">Executive Briefing</span>
+    <span class="stream-chip" data-stream="spotlight" data-content="streams.spotlight.label">Spotlight</span>
   </div>
 </div>
 
 <!-- ═══ MAIN CONTENT ═══ -->
 <div class="main-wrap">
 
-  <!-- Feed -->
   <main>
-    <div class="feed-header">
-      <div class="feed-title">Latest from the Lab</div>
-      <div class="feed-filter">
-        <select id="pillarFilter">
-          <option value="all">All Pillars</option>
-          <option value="strategy">Data & AI Strategy</option>
-          <option value="innovation">Products & Platform Innovation</option>
-          <option value="delivery">Delivery & Data Governance</option>
-          <option value="leadership">Leadership & Business Impact</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- 1. Practitioner Series -->
-    <div class="article-card" data-stream="practitioner" data-pillar="strategy">
+    <!-- Quick Bytes — Bad Data Doesn't Care -->
+    <div class="article-card quickbyte-card" data-stream="quickbytes" data-pillar="strategy" data-date="2026-03-21">
       <div class="card-pillar-bar strategy"></div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-stream practitioner">Practitioner Series</span>
-          <span class="card-pillar-tag">Data & AI Strategy</span>
+          <span class="card-stream quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
+          <span class="card-pillar-tag" data-content="pillars.strategy.label">Data &amp; AI Strategy</span>
+          <span class="card-date">Mar 21, 2026</span>
+        </div>
+        <h3><a href="quick-bytes/data-foundations-ai-bottleneck.html">Bad Data Doesn't Care How Smart Your AI Is</a></h3>
+        <ol class="qb-pointers">
+          <li>The AI bottleneck is not model sophistication — it is data provenance, semantic consistency, and schema integrity at the foundation.</li>
+          <li>AI and data strategies running on separate tracks is the most predictable failure mode in enterprise AI programs today.</li>
+          <li>Sequence your AI roadmap against your actual data maturity level, not your aspirational one — that discipline is the real competitive advantage.</li>
+        </ol>
+        <div class="card-footer">
+          <span class="card-read">2 min read</span>
+          <div class="card-tags">
+            <span class="card-tag">Data Foundations</span>
+            <span class="card-tag">AI Strategy</span>
+            <span class="card-tag">Data Quality</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practitioner Series — Medallion Architecture -->
+    <div class="article-card" data-stream="practitioner" data-pillar="strategy" data-date="2026-02-28">
+      <div class="card-pillar-bar strategy"></div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-stream practitioner" data-content="streams.practitioner.label">Practitioner Series</span>
+          <span class="card-pillar-tag" data-content="pillars.strategy.label">Data &amp; AI Strategy</span>
           <span class="card-date">Feb 28, 2026</span>
         </div>
-        <h3><a href="practitioner-series/medallion-architecture-innovation-or-rebranding.html">Medallion Architecture: Innovation or Rebranding?</a></h3>
+        <h3><a href="practitioner-series/medallion-architecture.html">Medallion Architecture: Innovation or Rebranding?</a></h3>
         <p class="card-excerpt">
-          A 22-year practitioner's definitive guide covering all six layers, AI agent fitment, anti-patterns, 
+          A 22-year practitioner's definitive guide covering all six layers, AI agent fitment, anti-patterns,
           and the honest verdict. Zero vendor bias, one honest answer.
         </p>
         <div class="card-footer">
@@ -141,16 +84,16 @@
       </div>
     </div>
 
-    <!-- 2. Quick Bytes -->
-    <div class="article-card quickbyte-card" data-stream="quickbytes" data-pillar="innovation">
+    <!-- Quick Bytes — RAG Hallucination -->
+    <div class="article-card quickbyte-card" data-stream="quickbytes" data-pillar="innovation" data-date="2026-02-25">
       <div class="card-pillar-bar innovation"></div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-stream quickbytes">Quick Bytes</span>
-          <span class="card-pillar-tag">Products & Platform Innovation</span>
+          <span class="card-stream quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
+          <span class="card-pillar-tag" data-content="pillars.innovation.label">Products &amp; Platform Innovation</span>
           <span class="card-date">Feb 25, 2026</span>
         </div>
-        <h3><a href="quick-bytes/rag-pipeline-hallucinating.html">Why Your RAG Pipeline Is Hallucinating — And How to Fix It</a></h3>
+        <h3><a href="#">Why Your RAG Pipeline Is Hallucinating — And How to Fix It</a></h3>
         <ol class="qb-pointers">
           <li>Semantic chunking with overlap reduces context loss by 40% — chunking strategy matters more than model size.</li>
           <li>Retrieval precision drops without metadata filtering — always pair vector search with structured filters.</li>
@@ -163,18 +106,18 @@
       </div>
     </div>
 
-    <!-- 3. Leadership Lens -->
-    <div class="article-card" data-stream="leadership-lens" data-pillar="leadership">
+    <!-- Executive Briefing — HBR -->
+    <div class="article-card" data-stream="executive" data-pillar="leadership" data-date="2026-02-22">
       <div class="card-pillar-bar leadership"></div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-stream leadership-lens">Leadership Lens</span>
-          <span class="card-pillar-tag">Leadership & Business Impact</span>
+          <span class="card-stream executive" data-content="streams.executive.label">Executive Briefing</span>
+          <span class="card-pillar-tag" data-content="pillars.leadership.label">Impact Through Leadership</span>
           <span class="card-date">Feb 22, 2026</span>
         </div>
-        <h3><a href="leadership-lens/hbr-data-driven-decision-making.html">HBR: "The Leader's Guide to Data-Driven Decision Making" — A Practitioner's Take</a></h3>
+        <h3><a href="#">HBR: "The Leader's Guide to Data-Driven Decision Making" — A Practitioner's Take</a></h3>
         <p class="card-excerpt">
-          The gap isn't in decision frameworks — it's in data literacy at the executive layer. 
+          The gap isn't in decision frameworks — it's in data literacy at the executive layer.
           My commentary on what the article gets right and where it falls short.
         </p>
         <div class="card-footer">
@@ -184,18 +127,18 @@
       </div>
     </div>
 
-    <!-- 4. Leading with AI -->
-    <div class="article-card" data-stream="leading-ai" data-pillar="delivery">
+    <!-- Spotlight — Fabric Governance -->
+    <div class="article-card" data-stream="spotlight" data-pillar="delivery" data-date="2026-02-18">
       <div class="card-pillar-bar delivery"></div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-stream leading-ai">Leading with AI</span>
-          <span class="card-pillar-tag">Delivery & Data Governance</span>
+          <span class="card-stream spotlight" data-content="streams.spotlight.label">Spotlight</span>
+          <span class="card-pillar-tag" data-content="pillars.delivery.label">Governed Execution at Scale</span>
           <span class="card-date">Feb 18, 2026</span>
         </div>
-        <h3><a href="leading-with-ai/fabric-governance-incomplete.html">Microsoft Fabric's Governance Story Is Incomplete — Here's What's Missing</a></h3>
+        <h3><a href="#">Microsoft Fabric's Governance Story Is Incomplete — Here's What's Missing</a></h3>
         <p class="card-excerpt">
-          While OneLake RBAC and Purview integration are steps forward, enterprise-grade lineage 
+          While OneLake RBAC and Purview integration are steps forward, enterprise-grade lineage
           and cross-workspace policies still need work. My recommendations for bridging the gap today.
         </p>
         <div class="card-footer">
@@ -205,37 +148,16 @@
       </div>
     </div>
 
-    <!-- 5. IPs & Products -->
-    <div class="article-card" data-stream="ips" data-pillar="innovation">
-      <div class="card-pillar-bar innovation"></div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span class="card-stream ips">IPs & Products</span>
-          <span class="card-pillar-tag">Products & Platform Innovation</span>
-          <span class="card-date">Feb 14, 2026</span>
-        </div>
-        <h3><a href="ips-and-products/embedash-power-bi-embedding.html">Embedash: Accelerating Power BI Embedding for ISVs</a></h3>
-        <p class="card-excerpt">
-          How we built a product that reduces Power BI integration time from weeks to hours. 
-          Architecture walkthrough, security model, and lessons from shipping to real ISV customers.
-        </p>
-        <div class="card-footer">
-          <span class="card-read">12 min read</span>
-          <div class="card-tags"><span class="card-tag">Power BI</span><span class="card-tag">Product</span><span class="card-tag">ISV</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Another Quick Bytes -->
-    <div class="article-card quickbyte-card" data-stream="quickbytes" data-pillar="delivery">
+    <!-- Quick Bytes — Data Quality Team Sport -->
+    <div class="article-card quickbyte-card" data-stream="quickbytes" data-pillar="delivery" data-date="2026-02-10">
       <div class="card-pillar-bar delivery"></div>
       <div class="card-body">
         <div class="card-meta">
-          <span class="card-stream quickbytes">Quick Bytes</span>
-          <span class="card-pillar-tag">Delivery & Data Governance</span>
+          <span class="card-stream quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
+          <span class="card-pillar-tag" data-content="pillars.delivery.label">Governed Execution at Scale</span>
           <span class="card-date">Feb 10, 2026</span>
         </div>
-        <h3><a href="quick-bytes/data-quality-three-rules.html">Data Quality Is a Team Sport — Three Non-Negotiable Rules</a></h3>
+        <h3><a href="#">Data Quality Is a Team Sport — Three Non-Negotiable Rules</a></h3>
         <ol class="qb-pointers">
           <li>Every data contract must have a named human owner — not a team alias, not a Slack channel, a person.</li>
           <li>Schema validation at ingestion catches 70% of downstream issues before they reach your Gold layer.</li>
@@ -252,101 +174,33 @@
 
   <!-- ═══ SIDEBAR ═══ -->
   <aside class="sidebar">
+    <script src="./assets/common/author-bio-inject.js"></script>
 
-    <!-- Author Card -->
-    <div class="sidebar-author">
-      <div class="sidebar-avatar">
-        <img src="./assets/img/aj_black_bg.png" alt="AJ">
-      </div>
-      <h3>Arnay Joshi</h3>
-      <div class="headline">Sr. Director of Engineering · Data & AI<br>Ex-Founder (Acquired) · Harvard Business School</div>
-      <p class="bio">
-        22+ years building enterprise data platforms at Microsoft, Harman International, and venture-backed startups.
-        Founded Cosxell (acquired), created Embedash, and led multi-geo engineering teams delivering Lakehouse, AI/ML, 
-        and BI platforms. Harvard and MIT credentialed. Databricks Champion. Based in the San Francisco Bay Area.
-      </p>
-      <div class="sidebar-social">
-        <a href="https://linkedin.com/in/arnayjoshi" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a>
-        <a href="https://github.com/arnayjoshi" target="_blank" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg></a>
-        <a href="https://medium.com/@arnayjoshi" target="_blank" title="Medium"><svg viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg></a>
-      </div>
-    </div>
-
-    <!-- Pillars -->
     <div class="sidebar-section">
       <div class="sidebar-section-title">Pillars</div>
-      <div class="pillar-link"><span class="pillar-icon strategy"></span> Data & AI Strategy <span class="pillar-count">12</span></div>
-      <div class="pillar-link"><span class="pillar-icon innovation"></span> Products & Platform Innovation <span class="pillar-count">8</span></div>
-      <div class="pillar-link"><span class="pillar-icon delivery"></span> Delivery & Data Governance <span class="pillar-count">6</span></div>
-      <div class="pillar-link"><span class="pillar-icon leadership"></span> Leadership & Business Impact <span class="pillar-count">10</span></div>
+      <div class="pillar-link"><span class="pillar-icon strategy"></span><span data-content="pillars.strategy.label">Data &amp; AI Strategy</span></div>
+      <div class="pillar-link"><span class="pillar-icon innovation"></span><span data-content="pillars.innovation.label">Products &amp; Platform Innovation</span></div>
+      <div class="pillar-link"><span class="pillar-icon delivery"></span><span data-content="pillars.delivery.label">Governed Execution at Scale</span></div>
+      <div class="pillar-link"><span class="pillar-icon leadership"></span><span data-content="pillars.leadership.label">Impact Through Leadership</span></div>
     </div>
-
-    <!-- Content Streams -->
-    <div class="sidebar-section">
-      <div class="sidebar-section-title">Content Streams</div>
-      <a class="stream-link" href="practitioner-series/"><span class="stream-ico ps">P</span> Practitioner Series</a>
-      <a class="stream-link" href="quick-bytes/"><span class="stream-ico qb">Q</span> Quick Bytes</a>
-      <a class="stream-link" href="leadership-lens/"><span class="stream-ico ll">L</span> Leadership Lens</a>
-      <a class="stream-link" href="leading-with-ai/"><span class="stream-ico la">A</span> Leading with AI</a>
-      <a class="stream-link" href="ips-and-products/"><span class="stream-ico ip">I</span> IPs & Products</a>
-    </div>
-
   </aside>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">
-        <img src="assets/img/ajs-labs-logo-web.png" alt="AJ's Data & AI Lab">
-      </div>
-      <p class="footer-desc">Practitioner perspectives on data engineering, AI acceleration, and engineering leadership. Built from 22+ years in the trenches.</p>
-    </div>
-    <div>
-      <div class="footer-heading">Pillars</div>
-      <div class="footer-links">
-        <a href="#">Data & AI Strategy</a>
-        <a href="#">Products & Platform Innovation</a>
-        <a href="#">Delivery & Data Governance</a>
-        <a href="#">Leadership & Business Impact</a>
-      </div>
-    </div>
-    <div>
-      <div class="footer-heading">Streams</div>
-      <div class="footer-links">
-        <a href="practitioner-series/">Practitioner Series</a>
-        <a href="quick-bytes/">Quick Bytes</a>
-        <a href="leadership-lens/">Leadership Lens</a>
-        <a href="leading-with-ai/">Leading with AI</a>
-        <a href="ips-and-products/">IPs & Products</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copy">
-    &copy; 2026 AJ's Data & AI Lab · Arnay Joshi · All rights reserved
-  </div>
-</footer>
+<script src="./assets/common/site-footer-inject.js"></script>
 
 <script>
-// Stream chip filtering
 document.querySelectorAll('.stream-chip').forEach(chip => {
   chip.addEventListener('click', function() {
     document.querySelectorAll('.stream-chip').forEach(c => c.classList.remove('active'));
     this.classList.add('active');
-    const stream = this.dataset.stream;
+    const s = this.dataset.stream;
     document.querySelectorAll('.article-card').forEach(card => {
-      card.style.display = (stream === 'all' || card.dataset.stream === stream) ? '' : 'none';
+      card.style.display = (s === 'all' || card.dataset.stream === s) ? '' : 'none';
     });
   });
 });
-// Pillar dropdown filtering
-document.getElementById('pillarFilter').addEventListener('change', function() {
-  const pillar = this.value;
-  document.querySelectorAll('.article-card').forEach(card => {
-    card.style.display = (pillar === 'all' || card.dataset.pillar === pillar) ? '' : 'none';
-  });
-});
 </script>
+<script src="./assets/js/components.js"></script>
 </body>
 </html>

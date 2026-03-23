@@ -133,14 +133,13 @@ body { font-family: var(--serif); background: var(--page); color: var(--ink); li
    NAV
 ═══════════════════════════════════════ */
 nav {
-  position: relative; top: 0; z-index: 800;
+  position: sticky; top: 0; z-index: 800;
   background: rgba(9,16,42,.97);
   backdrop-filter: blur(12px);
   display: flex; align-items: center; gap: 1rem;
   padding: .65rem 2rem;
   border-bottom: 1px solid rgba(50,218,214,.12);
   box-shadow: 0 2px 20px rgba(6,145,231,.08);
-  overflow: hidden;
 }
 .nav-brand {
   font-family: var(--display); font-size: .92rem; color: var(--cyan);
@@ -178,6 +177,7 @@ nav {
 .nav-links a:hover { color: var(--cyan); background: rgba(50,218,214,.08); }
 .nav-toggle { display: none; }
 @media(max-width:700px) {
+  .nav-arrow { display: none; }
   .nav-toggle {
     display: flex; align-items: center; justify-content: center;
     background: none; border: 1px solid rgba(50,218,214,.3);
@@ -189,7 +189,8 @@ nav {
     display: none; position: absolute; top: 100%; left: 0; right: 0;
     background: rgba(9,16,42,.98); flex-direction: column;
     padding: .5rem 1rem 1rem; border-bottom: 1px solid rgba(50,218,214,.12);
-    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    box-shadow: 0 8px 24px rgba(0,0,0,.3); z-index: 799;
+    max-height: calc(100vh - 56px); overflow-y: auto;
   }
   .nav-links.open { display: flex; }
   .nav-links a { padding: .5rem .6rem; border-bottom: 1px solid rgba(255,255,255,.05); }
