@@ -10,173 +10,135 @@
 <meta property="og:description" content="Your AI investment has a data quality ceiling — and most leaders haven't hit it yet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-footer.css">
 <link rel="stylesheet" href="./assets/css/quick-bytes.css">
 </head>
 <body>
 
 <div id="prog"></div>
 
-<!-- ═══ NAV ═══ -->
-<nav>
-  <a class="nav-brand" href="../index.html">
-    <img src="../assets/img/ajs-labs-logo-web.png" alt="AJ's Data &amp; AI Lab" class="nav-logo"
-         onerror="this.style.display='none'">
-  </a>
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
-  <div class="nav-links">
-    <a href="../index.html">Home</a>
-    <a href="../quick-bytes/data-foundations-ai-bottleneck.html">Quick Bytes</a>
-    <a href="../practitioner-series/medallion-architecture.html">Practitioner Series</a>
-    <a href="https://linkedin.com/in/arnayjoshi" target="_blank" rel="noopener" class="back-link">Connect ↗</a>
+<!-- ═══ SITE NAV + HERO ═══ -->
+<script src="../assets/common/site-header-inject.js"></script>
+
+<!-- ═══ STREAM TAB ═══ -->
+<div class="streams-bar">
+  <div class="streams-inner">
+    <span class="streams-label">Stream:</span>
+    <span class="stream-chip active" data-stream="quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
   </div>
-</nav>
+</div>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-dot"></span>
-      Quick Bytes &nbsp;·&nbsp; Data &amp; AI Strategy
-    </div>
-    <h1>Bad Data Doesn't Care<br><em>How Smart Your AI Is</em></h1>
-    <p class="hero-sub">Your AI investment has a data quality ceiling — and most leaders haven't hit it yet.</p>
-    <p class="hero-meta">ARNAY JOSHI &nbsp;·&nbsp; FOR CTOs, CDOs &amp; VPs OF DATA &nbsp;·&nbsp; MAR 21, 2026</p>
-    <div class="hero-badges">
-      <span class="badge-stream" data-content="streams.quickbytes.label">Quick Bytes</span>
-      <span class="badge-pillar" data-content="pillars.strategy.label">Data &amp; AI Strategy</span>
-      <span class="badge-read">⏱ 2 min read</span>
-    </div>
-  </div>
-</header>
+<!-- ═══ PAGE BODY ═══ -->
+<div class="main-wrap">
 
-<!-- ═══ ARTICLE ═══ -->
-<article class="article-wrap">
+  <main>
 
-  <!-- Opening Hook -->
-  <p class="article-hook">
-    AI is the most expensive way to discover you have a data problem. Every failed model, every incoherent
-    recommendation, every LLM confidently producing the wrong answer traces back — not to insufficient compute
-    or the wrong algorithm — but to data that was never built to carry this load.
-  </p>
+    <!-- ═══ ARTICLE CONTENT ═══ -->
+    <article class="article-wrap">
 
-  <!-- Section 1: The Problem -->
-  <div class="article-section">
-    <div class="section-label">The Problem</div>
-    <h2>The Bottleneck Is in the Foundation, Not the Model</h2>
-    <p>
-      The real constraint on AI performance is not model sophistication. It is data provenance, semantic
-      consistency, and schema integrity at the foundation. Most enterprise data environments were designed
-      for quarterly reporting, not millisecond inference. That architectural decision — made years before
-      anyone uttered the phrase "AI-ready data" — is now a hard ceiling on every initiative your organization
-      is trying to run.
-    </p>
-  </div>
-
-  <hr class="article-divider">
-
-  <!-- Section 2: Why It Happens -->
-  <div class="article-section">
-    <div class="section-label">Why It Happens</div>
-    <h2>Strategy and Infrastructure Are Running on Separate Tracks</h2>
-    <p>
-      Organizations treat AI strategy and data strategy as adjacent programs rather than a single continuum.
-      The result is entirely predictable: AI teams outpace the infrastructure funding them. Model development
-      accelerates while data contracts, lineage tracking, and schema governance fall two or three program
-      increments behind. The gap between ambition and architecture widens with every sprint.
-    </p>
-  </div>
-
-  <hr class="article-divider">
-
-  <!-- Section 3: Where It Breaks Down -->
-  <div class="article-section">
-    <div class="section-label">Where It Breaks Down</div>
-    <h2>Three Failure Modes, One Common Root Cause</h2>
-    <p>
-      Feature engineering exposes the first fracture: when data scientists spend more than half their
-      time cleaning data instead of building models, the foundation is failing them, not the other way
-      around. The second break appears in production — models that performed cleanly in staging degrade
-      within weeks because no one owns the upstream data contract. The third failure is the most dangerous:
-      inconsistent entity resolution across domains means your AI is confidently answering the wrong
-      question about the wrong customer.
-    </p>
-  </div>
-
-  <hr class="article-divider">
-
-  <!-- Section 4: What High-Performing Organizations Do Differently -->
-  <div class="article-section">
-    <div class="section-label">What High-Performing Organizations Do Differently</div>
-    <h2>Three Shifts That Separate the Leaders from the Laggards</h2>
-    <p>
-      High-performing organizations treat data as a product before they treat it as AI fuel —
-      establishing contracts at the source with named ownership and explicit quality SLOs, not as
-      an afterthought at the consumption layer. They run data health metrics alongside model accuracy
-      in production, holding both to the same operational standard. And critically, they sequence
-      their AI roadmap against their <em>actual</em> data maturity level, not their aspirational one.
-      That sequencing discipline is the most underrated competitive advantage in enterprise AI today.
-    </p>
-  </div>
-
-  <!-- Closing: The Leadership Imperative -->
-  <div class="closing-block">
-    <div class="section-label">The Leadership Imperative</div>
-    <h2>The Accountability Sits on Your Desk</h2>
-    <p>
-      The CDO and CTO who keep funding AI programs without first auditing their data foundations are
-      not leading transformation — they are financing disappointment at scale. The question is not
-      whether your AI ambitions are large enough. It is whether your data foundation is honest enough
-      to support them. That reckoning is not a technical problem. It is a leadership decision, and
-      it lands squarely on your desk.
-    </p>
-  </div>
-
-  <!-- Tags -->
-  <div class="article-tags">
-    <span class="article-tag">Data Foundations</span>
-    <span class="article-tag">AI Strategy</span>
-    <span class="article-tag">Data Quality</span>
-    <span class="article-tag">Data Architecture</span>
-    <span class="article-tag">CDO</span>
-    <span class="article-tag">CTO</span>
-  </div>
-
-  <!-- Author -->
-  <div class="author-box">
-    <img class="author-avatar"
-         src="../assets/img/aj-black-bg.png" alt="Arnay Joshi"
-         onerror="this.style.display='none'">
-    <div class="author-info">
-      <h4>Arnay Joshi</h4>
-      <div class="author-role">Sr. Director of Engineering · Data &amp; AI · Ex-Founder (Acquired) · Harvard Business School</div>
-      <p>
-        22+ years building enterprise data platforms at Microsoft, Harman International, and venture-backed
-        startups. Founded Cosxell (acquired), created Embedash, and led multi-geo engineering teams delivering
-        Lakehouse, AI/ML, and BI platforms. Harvard and MIT credentialed. Databricks Champion.
+      <!-- Opening Hook -->
+      <p class="article-hook">
+        AI is the most expensive way to discover you have a data problem. Every failed model, every incoherent
+        recommendation, every LLM confidently producing the wrong answer traces back — not to insufficient compute
+        or the wrong algorithm — but to data that was never built to carry this load.
       </p>
-    </div>
-  </div>
 
-</article>
+      <!-- Section 1: The Problem -->
+      <div class="article-section">
+        <div class="section-label">The Problem</div>
+        <h2>The Bottleneck Is in the Foundation, Not the Model</h2>
+        <p>
+          The real constraint on AI performance is not model sophistication. It is data provenance, semantic
+          consistency, and schema integrity at the foundation. Most enterprise data environments were designed
+          for quarterly reporting, not millisecond inference. That architectural decision — made years before
+          anyone uttered the phrase "AI-ready data" — is now a hard ceiling on every initiative your organization
+          is trying to run.
+        </p>
+      </div>
 
-<!-- Stream nav -->
-<div class="stream-nav">
-  <span class="stream-nav-label">More from the Lab:</span>
-  <a href="../index.html">All Articles</a>
-  <a href="../quick-bytes/data-foundations-ai-bottleneck.html">Quick Bytes</a>
-  <a href="../practitioner-series/medallion-architecture.html">Practitioner Series</a>
+      <hr class="article-divider">
+
+      <!-- Section 2: Why It Happens -->
+      <div class="article-section">
+        <div class="section-label">Why It Happens</div>
+        <h2>Strategy and Infrastructure Are Running on Separate Tracks</h2>
+        <p>
+          Organizations treat AI strategy and data strategy as adjacent programs rather than a single continuum.
+          The result is entirely predictable: AI teams outpace the infrastructure funding them. Model development
+          accelerates while data contracts, lineage tracking, and schema governance fall two or three program
+          increments behind. The gap between ambition and architecture widens with every sprint.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 3: Where It Breaks Down -->
+      <div class="article-section">
+        <div class="section-label">Where It Breaks Down</div>
+        <h2>Three Failure Modes, One Common Root Cause</h2>
+        <p>
+          Feature engineering exposes the first fracture: when data scientists spend more than half their
+          time cleaning data instead of building models, the foundation is failing them, not the other way
+          around. The second break appears in production — models that performed cleanly in staging degrade
+          within weeks because no one owns the upstream data contract. The third failure is the most dangerous:
+          inconsistent entity resolution across domains means your AI is confidently answering the wrong
+          question about the wrong customer.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 4: What High-Performing Organizations Do Differently -->
+      <div class="article-section">
+        <div class="section-label">What High-Performing Organizations Do Differently</div>
+        <h2>Three Shifts That Separate the Leaders from the Laggards</h2>
+        <p>
+          High-performing organizations treat data as a product before they treat it as AI fuel —
+          establishing contracts at the source with named ownership and explicit quality SLOs, not as
+          an afterthought at the consumption layer. They run data health metrics alongside model accuracy
+          in production, holding both to the same operational standard. And critically, they sequence
+          their AI roadmap against their <em>actual</em> data maturity level, not their aspirational one.
+          That sequencing discipline is the most underrated competitive advantage in enterprise AI today.
+        </p>
+      </div>
+
+      <!-- Closing: The Leadership Imperative -->
+      <div class="closing-block">
+        <div class="section-label">The Leadership Imperative</div>
+        <h2>The Accountability Sits on Your Desk</h2>
+        <p>
+          The CDO and CTO who keep funding AI programs without first auditing their data foundations are
+          not leading transformation — they are financing disappointment at scale. The question is not
+          whether your AI ambitions are large enough. It is whether your data foundation is honest enough
+          to support them. That reckoning is not a technical problem. It is a leadership decision, and
+          it lands squarely on your desk.
+        </p>
+      </div>
+
+      <!-- Tags -->
+      <div class="article-tags">
+        <span class="article-tag">Data Foundations</span>
+        <span class="article-tag">AI Strategy</span>
+        <span class="article-tag">Data Quality</span>
+        <span class="article-tag">Data Architecture</span>
+        <span class="article-tag">CDO</span>
+        <span class="article-tag">CTO</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <script src="../assets/common/author-bio-inject.js"></script>
+  </aside>
+
 </div>
 
 <!-- ═══ FOOTER ═══ -->
-<footer>
-  <div class="footer-links">
-    <a href="../index.html">Home</a>
-    <a href="../quick-bytes/data-foundations-ai-bottleneck.html">Quick Bytes</a>
-    <a href="../practitioner-series/medallion-architecture.html">Practitioner Series</a>
-    <a href="https://linkedin.com/in/arnayjoshi" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </div>
-  <div class="footer-copy">&copy; 2026 AJ's Data &amp; AI Lab · Arnay Joshi · All rights reserved</div>
-</footer>
+<script src="../assets/common/site-footer-inject.js"></script>
 
 <script src="../assets/js/components.js"></script>
 

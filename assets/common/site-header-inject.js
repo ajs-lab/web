@@ -42,7 +42,12 @@
     '        <a href="' + BASE + 'spotlight/index.html"><span class="stream-dot spotlight"></span><span>Spotlight - Shared Insights</span></a>' +
     '      </div>' +
     '    </div>' +
-    '    <a href="' + BASE + 'ips-and-products/">IPs &amp; Products</a>' +
+    '    <div class="nav-dropdown">' +
+    '      <a href="' + BASE + 'ips-and-products/">IPs &amp; Products</a>' +
+    '      <div class="nav-dropdown-menu">' +
+    '        <a href="https://github.com/ajs-lab/sparkdqx" target="_blank" rel="noopener"><span class="stream-dot practitioner"></span><span>Spark DQX</span></a>' +
+    '      </div>' +
+    '    </div>' +
     '    <a href="' + BASE + 'about.html">About</a>' +
     '    <a href="https://linkedin.com/in/arnayjoshi" target="_blank" rel="noopener" class="nav-contact">Connect &#8599;</a>' +
     '  </div>' +
