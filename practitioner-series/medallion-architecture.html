@@ -10,6 +10,9 @@
 <meta property="og:description" content="A 22-year practitioner's definitive guide covering all six layers, AI agent fitment, anti-patterns, and the honest verdict.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-footer.css">
 <link rel="stylesheet" href="./assets/css/practitioner-series.css">
 </head>
 <body>
@@ -19,7 +22,7 @@
 <nav>
   <button class="nav-toggle" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
   <a class="nav-brand" href="../index.html">
-    <img src="./assets/img/ajs-labs-logo-web.png" alt="AJ's Data &amp; AI Lab" class="nav-logo">
+    <img src="../assets/img/ajs-labs-logo-web.png" alt="AJ's Data &amp; AI Lab" class="nav-logo">
   </a>
   <div class="nav-wrap">
     <div class="nav-links">
@@ -634,28 +637,15 @@ Does your consumer need data in under 60 seconds?
   </tbody>
 </table></div>
 
-<div class="author-box">
-  <strong>Arnay Joshi</strong>
-  Chief Data Architect and Senior Technical Director with 22+ years building enterprise data platforms at Microsoft, HARMAN International, iLink Digital, and venture-backed product companies across the United States. Founder and active investor. Harvard and MIT credentialed. Established technology partnerships with Databricks and Snowflake. Based in San Francisco Bay Area.<br><br>
-  Connect on <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-</div>
-</section>
-
-</article>
+<!-- ═══ THE AUTHOR ═══ -->
+  <script src="../assets/common/author-bio-inject.js"></script>
 </div><!-- /page-wrap -->
 
-<footer>
-  <p>Medallion Architecture: Innovation or Rebranding? &nbsp;·&nbsp; Arnay Joshi &nbsp;·&nbsp; February 2026</p>
-  <p style="margin-top:.5rem; opacity:.55;">
-    <a href="https://www.databricks.com/glossary/medallion-architecture">Databricks</a> &nbsp;·&nbsp;
-    <a href="https://www.kimballgroup.com">Kimball</a> &nbsp;·&nbsp;
-    <a href="https://www.inmoncif.com">Inmon</a> &nbsp;·&nbsp;
-    <a href="https://www.datamesh-architecture.com/">Data Mesh</a> &nbsp;·&nbsp;
-    <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/defining-bucket-names-data-lakes/">AWS</a>
-  </p>
-</footer>
+<!-- ═══ FOOTER ═══ -->
+<script src="../assets/common/site-footer-inject.js"></script>
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
+<script src="../assets/js/components.js"></script>
 <script>
 // Progress bar + back-to-top
 window.addEventListener('scroll', () => {
