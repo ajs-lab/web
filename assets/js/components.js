@@ -134,3 +134,179 @@
   });
 
 })();
+
+/* ── Card & stream rendering helpers ────────────────────────────────────────
+ * Exposed on window.AJSLab so any page can reuse them.
+ * Each function is pure: data is passed in, no globals consumed.
+ * ────────────────────────────────────────────────────────────────────────── */
+window.AJSLab = window.AJSLab || {};
+
+/**
+ * Build a single article card element.
+ * @param {Object} article  - article data object
+ * @param {Object} pillars  - pillar definitions map { id: { label } }
+ * @returns {HTMLElement}
+ */
+AJSLab.buildCard = function (article, pillars) {
+  var pillar = article.pillar;
+  var label  = pillars[pillar] ? pillars[pillar].label : pillar;
+  var card   = document.createElement('div');
+  card.className = 'article-card';
+  card.setAttribute('data-stream', article.stream);
+  card.setAttribute('data-pillar', pillar);
+  card.innerHTML =
+    '<div class="card-pillar-bar ' + pillar + '"></div>' +
+    '<div class="card-body">' +
+      '<div class="card-meta"><span class="card-date">' + article.date + '</span></div>' +
+      '<h3><a href="' + article.href + '">' + article.title + '</a></h3>' +
+      '<p class="card-excerpt">' + article.excerpt + '</p>' +
+      '<div class="card-footer">' +
+        '<span class="card-read">' + article.readTime + '</span>' +
+        '<span class="pillar-tag ' + pillar + '">' + label + '</span>' +
+      '</div>' +
+    '</div>';
+  return card;
+};
+
+/**
+ * Build a stream section element with a paginated carousel.
+ * @param {Object}   stream   - stream definition { id, title, href, viewAll }
+ * @param {Array}    articles - full articles array (filtered internally)
+ * @param {Object}   pillars  - pillar definitions map
+ * @returns {HTMLElement|null}
+ */
+AJSLab.buildSection = function (stream, articles, pillars) {
+  var streamArticles = articles.filter(function (a) { return a.stream === stream.id; });
+  if (!streamArticles.length) return null;
+
+  var section = document.createElement('div');
+  section.className = 'stream-section';
+  section.innerHTML =
+    '<div class="section-hd">' +
+      '<div class="section-hd-meta"><h2>' + stream.title + '</h2></div>' +
+      '<a href="' + stream.href + '" class="section-view-all">' + stream.viewAll + '</a>' +
+    '</div>' +
+    '<div class="section-carousel">' +
+      '<div class="section-feed"></div>' +
+      '<div class="carousel-nav">' +
+        '<button class="carousel-btn prev" aria-label="Previous">\u2039</button>' +
+        '<span class="carousel-page"></span>' +
+        '<button class="carousel-btn next" aria-label="Next">\u203a</button>' +
+      '</div>' +
+    '</div>';
+
+  var feed = section.querySelector('.section-feed');
+  streamArticles.forEach(function (a) { feed.appendChild(AJSLab.buildCard(a, pillars)); });
+  return section;
+};
+
+/**
+ * Wire up prev/next pagination for a carousel container.
+ * Filter-aware: cards with class 'pillar-hidden' are excluded from paging.
+ * @param {HTMLElement} carousel - element containing .section-feed and .carousel-nav
+ */
+AJSLab.initCarousel = function (carousel) {
+  var feed  = carousel.querySelector('.section-feed');
+  var nav   = carousel.querySelector('.carousel-nav');
+  var prev  = nav.querySelector('.carousel-btn.prev');
+  var next  = nav.querySelector('.carousel-btn.next');
+  var label = nav.querySelector('.carousel-page');
+  var PER   = 2;
+  var cur   = 0;
+
+  function render(page) {
+    var allCards  = Array.from(feed.children);
+    var showCards = allCards.filter(function (c) { return !c.classList.contains('pillar-hidden'); });
+    var pages     = Math.ceil(showCards.length / PER) || 1;
+    cur = Math.min(Math.max(page, 0), pages - 1);
+
+    allCards.forEach(function (c) { c.style.display = 'none'; });
+    showCards.slice(cur * PER, (cur + 1) * PER).forEach(function (c) { c.style.display = ''; });
+
+    prev.disabled = cur === 0;
+    next.disabled = cur >= pages - 1;
+    label.textContent = (cur + 1) + ' / ' + pages;
+    nav.style.display = pages <= 1 ? 'none' : '';
+  }
+
+  prev.addEventListener('click', function () { render(cur - 1); });
+  next.addEventListener('click', function () { render(cur + 1); });
+  render(0);
+
+  /* Store re-render so filterByPillar can reset pagination after a filter change */
+  carousel._reRender = function () { render(0); };
+};
+
+/**
+ * Build the sidebar pillars widget with click-to-filter behaviour.
+ * Clicking a pillar filters all stream cards to that pillar.
+ * An "All" entry at the bottom clears the filter.
+ * @param {Object} pillars  - pillar definitions map
+ * @param {Array}  articles - full articles array (for counts)
+ * @returns {HTMLElement}
+ */
+AJSLab.buildPillarsWidget = function (pillars, articles) {
+  var counts = {};
+  articles.forEach(function (a) { counts[a.pillar] = (counts[a.pillar] || 0) + 1; });
+
+  var wrap = document.createElement('div');
+  wrap.className = 'sidebar-section';
+
+  var html = '<div class="sidebar-section-title">Pillars</div>';
+  Object.keys(pillars).forEach(function (key) {
+    html +=
+      '<div class="pillar-link" data-pillar-filter="' + key + '">' +
+        '<span class="pillar-icon ' + key + '"></span>' +
+        '<span>' + pillars[key].label + '</span>' +
+        '<span class="pillar-count">' + (counts[key] || 0) + '</span>' +
+      '</div>';
+  });
+  html +=
+    '<div class="pillar-link pillar-link--all active" data-pillar-filter="all">' +
+      '<span class="pillar-icon pillar-icon--all"></span>' +
+      '<span>All</span>' +
+      '<span class="pillar-count">' + articles.length + '</span>' +
+    '</div>';
+
+  wrap.innerHTML = html;
+
+  Array.from(wrap.querySelectorAll('[data-pillar-filter]')).forEach(function (el) {
+    el.addEventListener('click', function () {
+      AJSLab.filterByPillar(el.getAttribute('data-pillar-filter'), wrap);
+    });
+  });
+
+  return wrap;
+};
+
+/**
+ * Filter stream cards by pillar. Pass 'all' to clear the filter.
+ * Updates pillar link active states and hides empty stream sections.
+ * @param {string}      pillarId     - pillar key or 'all'
+ * @param {HTMLElement} pillarsWidget - the widget element (for active-state update)
+ */
+AJSLab.filterByPillar = function (pillarId, pillarsWidget) {
+  /* Mark / unmark cards */
+  Array.from(document.querySelectorAll('.article-card')).forEach(function (card) {
+    var match = pillarId === 'all' || card.getAttribute('data-pillar') === pillarId;
+    card.classList.toggle('pillar-hidden', !match);
+  });
+
+  /* Reset carousel pagination for every section */
+  Array.from(document.querySelectorAll('.section-carousel')).forEach(function (c) {
+    if (c._reRender) c._reRender();
+  });
+
+  /* Hide stream sections that have no visible cards */
+  Array.from(document.querySelectorAll('.stream-section')).forEach(function (section) {
+    var visible = section.querySelectorAll('.article-card:not(.pillar-hidden)').length;
+    section.style.display = visible ? '' : 'none';
+  });
+
+  /* Update active state on pillar links */
+  if (pillarsWidget) {
+    Array.from(pillarsWidget.querySelectorAll('[data-pillar-filter]')).forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-pillar-filter') === pillarId);
+    });
+  }
+};
