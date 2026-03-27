@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Products, Explained: From Catalog Entry to Enterprise Intelligence | Arnay Joshi</title>
+<meta name="description" content="Why cataloging datasets isn't the same as building data products. A practitioner's complete guide to the anatomy, contracts, full taxonomy, and AI-readiness of real data products.">
+<meta name="author" content="Arnay Joshi">
+<meta property="og:title" content="Data Products, Explained: From Catalog Entry to Enterprise Intelligence">
+<meta property="og:description" content="A practitioner's complete guide covering the four catalog drawbacks, data product anatomy, the Data Contract Specification, the full five-tier taxonomy, and what it takes to be AI-ready.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-footer.css">
+<link rel="stylesheet" href="./assets/css/practitioner-series.css">
+</head>
+<body>
+
+<div id="prog"></div>
+
+<nav>
+  <button class="nav-toggle" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <a class="nav-brand" href="../index.html">
+    <img src="../assets/img/ajs-labs-logo-web.png" alt="AJ's Data &amp; AI Lab" class="nav-logo">
+  </a>
+  <div class="nav-wrap">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#s1">The Label Problem</a>
+      <a href="#s2">Catalog Drawbacks</a>
+      <a href="#s3">What It Actually Is</a>
+      <a href="#s4">Anatomy</a>
+      <a href="#s5">The Canvas</a>
+      <a href="#s6">Data Contract</a>
+      <a href="#s7">Beyond Tables</a>
+      <a href="#s8">Eight Qualities</a>
+      <a href="#s9">AI-Ready</a>
+      <a href="#s10">Start Here</a>
+      <a href="#s11">References</a>
+    </div>
+    <button class="nav-arrow nav-arrow-left" onclick="document.querySelector('.nav-links').scrollBy({left:-200,behavior:'smooth'})">‹</button>
+    <button class="nav-arrow nav-arrow-right" onclick="document.querySelector('.nav-links').scrollBy({left:200,behavior:'smooth'})">›</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Practitioner Series · Data Architecture</div>
+    <h1>Data Products, Explained<br><em>From Catalog Entry to Enterprise Intelligence</em></h1>
+    <p class="hero-sub">You cataloged your datasets and called them products. Here's what you actually built — and what a real data product requires.</p>
+    <p class="hero-meta">ARNAY JOSHI · FOR DATA ARCHITECTS, PLATFORM LEADS, CDOS &amp; SENIOR DATA ENGINEERS</p>
+    <div class="read-time">⏱ ~50 min read</div>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="toc-title">Contents</div>
+  <ul class="toc">
+    <li><a href="#s1">1. It's Not Just a Label</a></li>
+    <li><a href="#s2">2. What the Catalog Gets Wrong</a>
+      <ul class="toc-sub">
+        <li><a href="#s2a">No Consumer Contract</a></li>
+        <li><a href="#s2b">No Quality Commitment</a></li>
+        <li><a href="#s2c">No Lifecycle Management</a></li>
+        <li><a href="#s2d">The Delivery Gap</a></li>
+      </ul>
+    </li>
+    <li><a href="#s3">3. What a Data Product Actually Is</a></li>
+    <li><a href="#s4">4. Anatomy of a Data Product</a>
+      <ul class="toc-sub">
+        <li><a href="#s4a">Input Ports</a></li>
+        <li><a href="#s4b">The Core</a></li>
+        <li><a href="#s4c">Output Ports</a></li>
+      </ul>
+    </li>
+    <li><a href="#s5">5. The Data Product Canvas</a></li>
+    <li><a href="#s6">6. The Data Contract</a></li>
+    <li><a href="#s7">7. Beyond Tables — Full Taxonomy</a></li>
+    <li><a href="#s8">8. Making It Great — Eight Qualities</a></li>
+    <li><a href="#s9">9. Data Products as AI-Ready Assets</a></li>
+    <li><a href="#s10">10. Start Here — Practitioner's Checklist</a></li>
+    <li><a href="#s11">11. References</a></li>
+  </ul>
+</aside>
+
+<!-- ── ARTICLE ── -->
+<article>
+
+<section class="section" id="s1">
+<h2>1. It's Not Just a Label on a Table</h2>
+<p>Ask ten people at your company what a data product is, and at least seven of them will describe the same thing: a dataset registered in a catalog with a name, an owner field, a description, maybe a few tags, and if someone was feeling ambitious that day, a lineage diagram. That is how most organizations encounter the concept of a data product in practice. They run a data governance initiative, they purchase a catalog tool, they tell their teams to document their datasets, and at the end of the exercise they declare that they now have data products.</p>
+<p>They do not.</p>
+<p>What they have is a directory. A well-intentioned, reasonably organized directory of data assets that someone took the time to label. That is genuinely useful — undocumented data is a significant problem in enterprise organizations, and any effort to make data findable is worth making. But a label is not a product. A description is not a contract. An owner field in a catalog entry is not the same thing as a human being who is accountable for the quality, availability, and consumer satisfaction of a living data asset.</p>
+<p>The confusion is understandable. The term "data product" entered mainstream enterprise vocabulary primarily through the Data Mesh movement, which introduced it alongside three other principles — domain ownership, self-serve infrastructure, and federated governance — as part of a comprehensive rethinking of how organizations should manage analytical data at scale. In the rush to adopt the terminology, most organizations picked up the label and left the substance behind. They renamed their datasets and called them products. They added owner fields to their catalog entries and called it governance. They drew lineage diagrams and called it accountability.</p>
+<p>The result is a generation of data programs that look like they have embraced product thinking but still operate with pipeline thinking. The data team builds, delivers, and moves on. There is no consumer relationship. There is no service commitment. There is no feedback loop. There is no lifecycle management. The dataset exists, it is cataloged, it is technically findable — and yet consuming teams still reach out to data engineers to ask what the columns mean, whether the data is fresh, whether they can trust the numbers, and who to call when something breaks.</p>
+<div class="callout danger">
+  <div class="callout-label">The Central Argument</div>
+  A data product is not a description of data. It is an operational commitment to deliver data — with a defined interface, a quality standard, a service level, an owner, and a lifecycle — to consumers who depend on it to make decisions and build systems. Until your organization treats it that way, you do not have data products. You have a catalog.
+</div>
+</section>
+
+<section class="section" id="s2">
+<h2>2. What the Catalog Gets Wrong — The Four Drawbacks</h2>
+<p>The catalog-first, metadata-only approach to data products is not malicious or even unreasonable as a starting point. Documentation is necessary. Discovery is necessary. Ownership attribution is necessary. The problem is when organizations stop there and mistake documentation for productization. There are four specific, structural drawbacks that result.</p>
+
+<h3 id="s2a">The First Drawback: No Consumer Contract</h3>
+<p>When a dataset is registered in a catalog with a description and an owner field, there is no formal agreement between the team that produces the data and the teams that consume it. There is no declared schema stability — the producer can change column names, alter data types, remove fields, or break the refresh cadence without any formal obligation to notify consumers. There is no service level agreement, no stated freshness guarantee, no defined error rate tolerance. Consumers discover these omissions the hard way: when a pipeline breaks at 3am, when a board report uses stale numbers, or when an ML model trained on this dataset begins drifting without warning because the upstream schema changed two weeks ago and no one thought to mention it.</p>
+<p>In a software engineering context, this is exactly the situation that API contracts exist to prevent. You would never build a microservice that exposes an undocumented, unversioned endpoint with no SLA and expect downstream services to depend on it reliably. But that is precisely what the catalog-only data product model does, every day, at scale.</p>
+
+<h3 id="s2b">The Second Drawback: No Quality Commitment</h3>
+<p>A catalog entry can assert that a dataset is high quality. It can include a quality score computed by a data observability tool. But an assertion is not a commitment. A commitment means that the team producing the data has accepted accountability for measuring quality continuously, alerting when quality drops below a defined threshold, and resolving quality issues within a declared response window. Without that accountability structure, quality scores in catalogs become decorative. Consumers learn quickly that the green checkmark next to a dataset's quality indicator reflects the last time someone ran a profiling job, not the current state of the data. Trust erodes. Consumers build their own copies of the data, apply their own transformations, and the catalog record drifts further and further from reality.</p>
+
+<h3 id="s2c">The Third Drawback: No Lifecycle Management</h3>
+<p>Data assets in a catalog do not age gracefully. They accumulate. A typical enterprise data catalog, five years into operation, contains thousands of datasets, the majority of which are stale, deprecated, superseded, or duplicated. Because there is no formal lifecycle process — no versioning, no deprecation path, no retirement policy — nothing ever leaves the catalog. Consumers cannot tell which datasets are actively maintained, which are on a deprecation track, and which were created by someone who left the company eighteen months ago and have been silently producing incorrect data ever since. The catalog becomes a museum of technical debt rather than a curated registry of trusted assets.</p>
+
+<h3 id="s2d">The Fourth Drawback: The Delivery Gap</h3>
+<p>A data product that lives only as a catalog entry is not actually consumable. Consuming it requires the consumer to discover the dataset, obtain access through a separate process, understand the schema through documentation that may or may not be current, figure out the right query or API call through trial and error, and build their own reliability layer on top because there is no SLA to rely on. This is not a product experience. This is a scavenger hunt.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Drawback</th><th>What the catalog does</th><th>What a product requires</th></tr></thead>
+  <tbody>
+    <tr><td>No consumer contract</td><td>Owner field + description</td><td>Machine-readable schema, SLA, terms of use — agreed before consumers build dependencies</td></tr>
+    <tr><td>No quality commitment</td><td>Quality score at last scan</td><td>Automated quality rules running on every execution, with alerting before consumers notice failures</td></tr>
+    <tr><td>No lifecycle management</td><td>Assets accumulate indefinitely</td><td>Versioning, deprecation path, retirement policy, active maintenance status</td></tr>
+    <tr><td>Delivery gap</td><td>Metadata describing where data might be</td><td>Documented, stable, ready-to-use interface — no scavenger hunt required</td></tr>
+  </tbody>
+</table></div>
+<div class="callout warn">
+  <div class="callout-label">Practitioner Note</div>
+  These four drawbacks are not minor gaps that can be papered over with better documentation. They represent a fundamental mismatch between the label "data product" and the reality of how data is being managed. Fixing them requires not better catalog software but a different operating model for how data is built, owned, and served.
+</div>
+</section>
+
+<section class="section" id="s3">
+<h2>3. What a Data Product Actually Is</h2>
+<p>The term "data product" did not originate in catalog software or governance frameworks. It was introduced by Zhamak Dehghani as part of the Data Mesh architecture, first articulated in 2019 and elaborated in her 2022 book. Understanding what a data product actually is requires understanding the context in which the concept was developed — and that context is the failure of centralized data teams to scale.</p>
+<p>The core problem that Data Mesh addresses is a predictable organizational dysfunction. As companies grow, they invest in a central data lake and a central data team to manage it. The central team starts well — it delivers quick wins, builds dashboards, answers questions. But as the organization scales, the volume and variety of data needs grow faster than the central team can absorb. The team becomes a bottleneck. It spends most of its time fixing broken pipelines caused by upstream schema changes it had no control over. Business teams wait weeks for data they need today. The insights that arrive are often wrong because the central team lacked the domain context to interpret the data correctly.</p>
+<p>Data Mesh addresses this bottleneck by shifting responsibility. Rather than having a central team manage all analytical data, it moves that responsibility to the domain teams that generate and understand the data. Each domain team is accountable not just for building data assets but for serving them to other teams as products — with all the quality, reliability, and consumer-focus that the word "product" implies.</p>
+<p>A data product, in this framework, is defined as <em>a logical unit that contains all the components needed to process and store domain data for analytical or data-intensive use cases and makes that data available to other teams through output ports</em>. Think of it as a microservice for analytical data. Just as a microservice encapsulates business logic and exposes it through a well-defined API, a data product encapsulates domain data and exposes it through a well-defined data contract.</p>
+<div class="callout danger">
+  <div class="callout-label">Three Critical Implications</div>
+  <strong>1. Operational, not descriptive.</strong> A data product is not a description of data — it is a running system that acquires, processes, stores, and serves data.<br><br>
+  <strong>2. Domain-bounded.</strong> Every data product belongs to exactly one domain team, which is accountable for its operation throughout its entire lifecycle.<br><br>
+  <strong>3. Explicit output ports.</strong> Defined, documented, and contractually governed interfaces are the hard boundary between what the producer is responsible for and what the consumer is entitled to depend on.
+</div>
+<p>A well-designed data product must exhibit eight specific attributes. It must be <strong>discoverable</strong> — findable without having to ask someone for help. <strong>Addressable</strong> — accessible through a stable, documented identifier. <strong>Understandable</strong> — documented with enough semantic context to evaluate fit. <strong>Trustworthy</strong> — backed by active quality monitoring with transparent quality indicators. <strong>Natively accessible</strong> — available in formats different consumers can use without significant transformation. <strong>Interoperable</strong> — compatible with other data products so they can be joined and combined. <strong>Valuable</strong> — solving a real consumer problem. And <strong>secure</strong> — governed with access controls and privacy protections enforced at the product boundary, not applied as an afterthought.</p>
+</section>
+
+<section class="section" id="s4">
+<h2>4. Anatomy of a Data Product — What Lives Inside</h2>
+<p>Understanding what a data product is requires opening it up and examining the components. The simplest and most accurate picture: a data product has input ports on one side, a processing and storage core in the middle, and output ports on the other side, all of it bounded within a domain and owned by a single team.</p>
+
+<h3 id="s4a">4.1 Input Ports</h3>
+<p>Input ports are the mechanisms through which a data product receives data. They define the format and protocol used to ingest data from upstream sources — typically operational systems within the domain (databases, message queues, event streams, application APIs) and other data products from the same or different domains. The input port is not passive. It is a deliberate design decision about what data the product will draw from, at what frequency, and in what format. A well-designed input port includes contract testing in reverse — the data product validates that incoming data matches the expected schema before processing it, so that upstream changes are caught at ingestion rather than surfaced as corrupted outputs.</p>
+
+<h3 id="s4b">4.2 The Core — Three Archetypes</h3>
+<p>The core is everything between the input and the output: ingestion logic, cleansing, transformation, enrichment, aggregation, modeling, and storage. The complexity here varies dramatically depending on the archetype:</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Archetype</th><th>What it does</th><th>When to use it</th><th>Trade-off</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Source-aligned</strong></td><td>Reflects business facts directly from an operational system — minimal transformation, analytically optimized format</td><td>When consumers need maximum fidelity to operational reality and will apply their own business logic</td><td>Most general-purpose, least expensive to build; consumers bear transformation burden</td></tr>
+    <tr><td><strong>Aggregate-aligned</strong></td><td>Combines data from multiple upstream products; centralizes common transformations, time-windowed aggregations, denormalization</td><td>When multiple teams would otherwise compute the same aggregation differently</td><td>Reduces consumer burden and metric inconsistency; more expensive to build and maintain</td></tr>
+    <tr><td><strong>Consumer-aligned</strong></td><td>Built specifically to serve a particular consumer's complex use case; highly specific business logic designed by the consumer domain team</td><td>When a consumer's needs are complex enough that a general product would be unusable</td><td>Most tailored and most expensive; justified only for genuinely complex, high-value consumption patterns</td></tr>
+  </tbody>
+</table></div>
+
+<h3 id="s4c">4.3 Output Ports</h3>
+<p>Output ports are where the data product meets its consumers. A single data product can — and often should — have multiple output ports serving different consumption patterns simultaneously. One output port might be a BigQuery dataset serving analysts who write SQL queries. Another might be Parquet files in an S3 bucket, serving data engineers running large-scale batch jobs. A third might be a Kafka topic, serving real-time application consumers needing low-latency domain events. A fourth might be a REST API endpoint, serving application developers who want programmatic access.</p>
+<p>The data product does not choose one modality and force all consumers to adapt — it serves the right format for the right consumer type through explicit, documented output ports rather than informal access patterns. Every output port is governed by a data contract: the specification that defines the interface between the producer and the consumer, agreed upon before consumers build dependencies on the product.</p>
+<div class="callout warn">
+  <div class="callout-label">Practitioner Note</div>
+  Ownership is not a field in a catalog. It is a set of ongoing operational responsibilities that a specific team has formally accepted. The entire data product — input ports, core, output ports, and contracts — is owned by one domain team. That team monitors quality, ensures availability, manages costs, evolves the product in response to consumer feedback, and handles deprecation when the product is no longer needed.
+</div>
+</section>
+
+<section class="section" id="s5">
+<h2>5. Designing One — The Data Product Canvas</h2>
+<p>Knowing what a data product is in theory and actually designing one in practice are different challenges. The Data Product Canvas, developed as part of the datamesh-architecture.com open-source framework, provides a structured, collaborative process for translating the theory into a concrete specification. It consists of eight building blocks, and the sequence in which they are filled out is deliberate — it encodes a design philosophy, not just a documentation format.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>#</th><th>Building Block</th><th>What it forces you to answer</th><th>Why the sequence matters</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Domain</strong></td><td>Which single team is accountable for this product — operationally, permanently?</td><td>Ambiguity in domain ownership is the single most common reason data products fail. The canvas forces one answer.</td></tr>
+    <tr><td>2</td><td><strong>Name</strong></td><td>What is the stable, public identifier consumers will embed in their code and contracts?</td><td>A name reflects the business concept, not the implementation. A business analyst should understand it without reading the schema.</td></tr>
+    <tr><td>3</td><td><strong>Consumer &amp; Use Case</strong></td><td>Who will use this, and what specific decision or analytical question does it enable?</td><td>The most important block. Consumer needs determine every other design decision: fields, granularity, freshness, format.</td></tr>
+    <tr><td>4</td><td><strong>Data Contract</strong></td><td>What schema, quality level, and SLA is the team committing to before a line of pipeline code is written?</td><td>Contract as a design artifact, not a compliance afterthought — creates consumer alignment before the build.</td></tr>
+    <tr><td>5</td><td><strong>Sources</strong></td><td>Where does the data come from? What format? At what frequency?</td><td>Surfaces integration risks early; establishes the dependency graph for lineage and impact analysis.</td></tr>
+    <tr><td>6</td><td><strong>Architecture</strong></td><td>What ingestion pattern, storage technology, and transformation approach will the core use?</td><td>Kept conceptual at design time — enough to estimate complexity and identify risks, not a full technical spec.</td></tr>
+    <tr><td>7</td><td><strong>Ubiquitous Language</strong></td><td>What do the key business terms in this domain mean — specifically, in this bounded context?</td><td>"Customer" in sales is not the same entity as "Customer" in billing. Domain vocabulary must be explicit and consistent.</td></tr>
+    <tr><td>8</td><td><strong>Classification</strong></td><td>Is this source-aligned, aggregate, or consumer-aligned?</td><td>Determines generality of purpose, schema specificity, and where accountability for evolution sits.</td></tr>
+  </tbody>
+</table></div>
+<p>Filling out this canvas collaboratively — with representatives from the domain team, potential consumers, and a platform or enabling team member present — typically surfaces more important design questions in a two-hour workshop than months of informal documentation work. The canvas is available as a PDF and Miro template under a Creative Commons license. The discipline it represents — starting with the consumer, specifying the contract before building the internals, naming the domain explicitly, documenting the language — is the operating difference between a team that builds data products and a team that builds datasets.</p>
+</section>
+
+<section class="section" id="s6">
+<h2>6. The Data Contract — Your Product's Operating Agreement</h2>
+<p>If the Data Product Canvas is the design tool for a data product, the data contract is its operating agreement. It is the machine-readable specification that defines what a data product promises to deliver, to whom, under what terms, and at what quality level. A data contract is not documentation. It is a binding interface specification between a data producer and its consumers, and it is the technical foundation for everything that makes a data product trustworthy: automated testing, schema validation, quality monitoring, access control, and governance policy enforcement all derive from the contract.</p>
+<p>The <strong>Data Contract Specification</strong>, maintained as an open standard at <em>datacontract.com</em>, provides a YAML-based format for expressing these agreements in a machine-readable, version-controlled way.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Contract Element</th><th>What it specifies</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Provider &amp; Output Port</strong></td><td>Who owns the data, which domain, where and how it can be accessed</td><td>Makes the product addressable — not just describable. The addressing information a consumer needs to connect.</td></tr>
+    <tr><td><strong>Terms &amp; Conditions</strong></td><td>Permitted uses, redistribution rights, purpose restrictions, compliance obligations (GDPR, HIPAA, CCPA)</td><td>Privacy and compliance rules encoded at the point of consumption, not applied retroactively during audits.</td></tr>
+    <tr><td><strong>Schema &amp; Semantics</strong></td><td>Exact attributes, data types, nullability, constraints, and — critically — business meaning of each field aligned to the domain's ubiquitous language</td><td>Makes the product understandable. A consumer reads the contract and knows whether the data meets their needs without contacting the producer.</td></tr>
+    <tr><td><strong>Data Quality Attributes</strong></td><td>Minimum freshness, expected row count ranges, completeness thresholds, referential integrity expectations, business rules</td><td>Publishing a quality attribute is accepting an obligation, not reporting a benchmark. Enables automated quality gates.</td></tr>
+    <tr><td><strong>Service Level Objectives</strong></td><td>Availability targets, support response windows, maintenance schedules, priority tier (Tier 1 = 24/7 on-call; Tier 3 = business hours)</td><td>Consumers must know the SLA tier before deciding whether to build a real-time decision system or a weekly report on top of this product.</td></tr>
+    <tr><td><strong>Access &amp; Billing</strong></td><td>Consumer identity, consumption volumes, compute cost attribution, capacity planning inputs</td><td>In shared infrastructure, cost transparency enables informed optimization decisions by the producing team.</td></tr>
+  </tbody>
+</table></div>
+<p>The <strong>Data Product Specification</strong>, a related open standard at <em>dataproduct-specification.com</em>, takes the contract one level higher. It defines the overall data product as a machine-readable YAML document specifying the product's identity, status, archetype, owner, domain, and its full collection of input and output ports — each linked to a data contract. Together, they represent the complete, version-controlled definition of a data product that tooling can parse, validate, generate code from, and use to enforce governance policies without human inspection of documentation.</p>
+<div class="callout danger">
+  <div class="callout-label">The Operational Difference</div>
+  A catalog entry is a human-readable description. A data contract is a machine-enforceable commitment. One is browsed. The other runs.
+</div>
+</section>
+
+<section class="section" id="s7">
+<h2>7. Beyond Tables — The Full Data Product Taxonomy</h2>
+<p>The data product concept applies primarily to structured datasets: tables, files, and event streams produced by a domain team and served through output ports governed by a data contract. But any practitioner who has worked in a real enterprise data environment for more than a few years will recognize that tables and files are only one category of the intelligence assets that organizations build, share, and depend on. The same governance failures that afflict ungoverned datasets — no owner, no contract, no quality commitment, no lifecycle — occur just as destructively in other asset classes.</p>
+<p>The complete taxonomy has five tiers:</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Tier</th><th>Asset Type</th><th>Examples</th><th>Governance Failure Mode</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Tier 1</strong></td><td>Data Models</td><td>Raw domain datasets, refined curated data, multi-table schemas, event streams</td><td>No owner, no contract, schema changes break consumers silently at 3am</td></tr>
+    <tr><td><strong>Tier 2</strong></td><td>Semantic Models</td><td>dbt metrics layers, Cube, LookML, AtScale, Fabric semantic models</td><td>Each team encodes its own definition of "Revenue" in its own tool — different numbers everywhere, no authoritative source</td></tr>
+    <tr><td><strong>Tier 3</strong></td><td>KPI &amp; Metric Products</td><td>Certified DAU, Revenue, Churn Rate, NPS — operationalized with owners and SLAs</td><td>Every team computes the same metric differently; AI systems answering business questions invent their own calculations</td></tr>
+    <tr><td><strong>Tier 4</strong></td><td>Analytical Products</td><td>Dashboards, reports, embedded analytics</td><td>Hundreds of dashboards with inconsistent logic, no lineage, no retirement process — three revenue numbers in three dashboards, none authoritative</td></tr>
+    <tr><td><strong>Tier 5</strong></td><td>AI &amp; ML Products</td><td>Trained models, feature stores, vector embedding products, agentic workflows</td><td>No version tracking, no training data lineage, no drift monitoring — silent model degradation; training-serving skew from ungoverned feature stores</td></tr>
+  </tbody>
+</table></div>
+<p>Tier 2 — semantic models — is worth dwelling on because its failure is so expensive and so visible. When semantic definitions live inside individual BI tool workbooks rather than in a governed, shared layer, every team ends up encoding its own interpretation of the business in its own tool. Revenue in the sales dashboard is not the same number as Revenue in the finance report because the logic behind each one was built independently, by different people, in different tools, at different times, with no shared contract between them. Treating the semantic model as a governed product — with an owner, a version, a contract, and a lifecycle — is the only way to ensure that business concepts mean the same thing everywhere they appear.</p>
+<p>Tier 5 — AI and ML products — has the most stringent product requirements. A trained model has a version that must be tracked, an input schema that must remain stable, a training data lineage that must be documented, a drift monitoring regime that alerts when the relationship between inputs and outputs changes, and a <strong>model card</strong> that serves as the AI equivalent of a data contract. Feature stores are a specialized class of data product requiring <em>point-in-time correctness guarantees</em> — because using data that was not available at prediction time causes training-serving skew that silently degrades model performance.</p>
+<div class="callout warn">
+  <div class="callout-label">Practitioner Note</div>
+  What connects all five tiers is not the format of the asset but the product discipline applied to it. Every tier requires an owner, a consumer-facing contract, a quality commitment, a lifecycle, and a discovery mechanism. Organizations that apply product discipline only to datasets while leaving semantic models fragmented, metrics inconsistent, dashboards ungoverned, and AI models undocumented end up with a data platform that is technically sophisticated but organizationally unreliable.
+</div>
+</section>
+
+<section class="section" id="s8">
+<h2>8. Making It Great — The Eight Qualities That Separate a Real Data Product from a Registered Asset</h2>
+<p>There is a minimum viable data product — one that meets the technical definition, has input and output ports, is bounded to a domain, and has a data contract. And then there is an excellent data product — one that consumers actively choose, recommend to colleagues, build on with confidence, and return to when their needs evolve. The gap between the two is not primarily technical. Eight qualities define it.</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>#</th><th>Quality</th><th>What it means in practice</th><th>The failure when absent</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Consumer-first design</strong></td><td>Start with a specific consumer and use case, then work backward to determine what data is needed, at what granularity, with what freshness, in what format</td><td>Something that technically contains the right data but requires significant transformation before it is useful — a producer-convenience product, not a consumer-ready one</td></tr>
+    <tr><td>2</td><td><strong>Semantic clarity</strong></td><td>Schema uses business-meaningful names aligned with domain ubiquitous language; attributes documented with business context, edge cases, and how they should and should not be interpreted</td><td>Consumers contact the producing team to ask what a field means before they can use it — the contract has the schema but not the meaning</td></tr>
+    <tr><td>3</td><td><strong>Quality by design, not by complaint</strong></td><td>Quality rules automated as tests on every pipeline execution; freshness monitoring alerts the team before consumers notice; anomaly detection surfaces issues at ingestion, not at consumption</td><td>A team that spends its time putting out fires rather than improving the product — reactive governance instead of proactive ownership</td></tr>
+    <tr><td>4</td><td><strong>Meaningful SLA commitments</strong></td><td>SLAs calibrated to what the team can actually deliver and monitor; tiered to reflect genuine priority; backed by on-call rotation and defined escalation paths for Tier 1 products</td><td>Publishing a Tier 1 SLA on a product nobody monitors outside business hours — liability without accountability</td></tr>
+    <tr><td>5</td><td><strong>Multi-modal output</strong></td><td>SQL access for analysts, Parquet for data engineers, Kafka for real-time consumers, REST API for applications, machine-readable contract for AI agents — from the same underlying data</td><td>All consumers forced into a single access modality — total consumer adaptation cost almost always exceeds the producer cost of implementing multiple output ports</td></tr>
+    <tr><td>6</td><td><strong>Active, queryable lineage</strong></td><td>Provenance chain from source to output is machine-readable, queryable in real time, and automatically updated when the pipeline changes</td><td>Root cause identification of a quality failure becomes a forensic investigation rather than a query</td></tr>
+    <tr><td>7</td><td><strong>Versioning with backward compatibility</strong></td><td>Adding fields is backward-compatible and requires no version increment; removing or renaming fields requires a version increment and deprecation period while consumers migrate</td><td>Cascading failures in consuming systems when schema changes without notice — followed by emergency migrations and permanent erosion of consumer trust</td></tr>
+    <tr><td>8</td><td><strong>Operating model, not just an ownership field</strong></td><td>The owning team has dedicated capacity for maintenance and improvement, a consumer feedback mechanism, and a process for lifecycle decisions including retirement</td><td>A consumer who reports a quality issue reaches a catalog record instead of a human being who responds, investigates, and resolves</td></tr>
+  </tbody>
+</table></div>
+<p>Excellent data products are not built in a sprint and shipped. They are operated continuously, exactly like software services, with the same investment in reliability engineering, consumer relationship management, and iterative improvement that distinguishes a software product organization from a software project organization.</p>
+</section>
+
+<section class="section" id="s9">
+<h2>9. Data Products as AI-Ready Assets</h2>
+<p>Every property discussed in the previous section — consumer-first design, semantic clarity, quality by design, meaningful SLAs, multi-modal output, active lineage, versioning, operational ownership — was developed in the context of human consumers. But these same properties are exactly what AI systems need to operate reliably on enterprise data. The requirements of a trustworthy data consumer are not fundamentally different whether that consumer is a person or an autonomous system. Both need to know what the data means, whether they can trust it, how fresh it is, how to access it, and what they are and are not allowed to do with it.</p>
+<p>AI systems amplify both the signal and the noise from their input data. A human analyst who receives a slightly stale dataset can often recognize the staleness and adjust their interpretation. An ML model trained on silently corrupted data will learn the corruption and encode it into its predictions. An agentic workflow operating on an ungoverned dataset with no contract will propagate whatever assumptions it makes about the data's meaning across every downstream step of its reasoning process — and do so confidently, without flagging uncertainty, because it has no mechanism to know that its assumptions are wrong.</p>
+<div class="callout danger">
+  <div class="callout-label">The AI Failure Mode That Model Improvement Cannot Fix</div>
+  This failure is not a problem with the model — it is a problem with the data the model is consuming. And the solution is not better prompting or better fine-tuning. It is better data products.
+</div>
+<p>For a data product to be AI-ready, the eight qualities above are necessary but not sufficient. Three additional properties are specifically required:</p>
+<p><strong>Machine-readable metadata.</strong> AI systems cannot read unstructured documentation the way a human can. Quality signals must be typed, queryable attributes — a freshness timestamp, a completeness percentage, a boolean flag indicating whether the most recent quality checks passed. When an AI agent evaluates whether to use a data product, it should be able to answer the question "is this data safe to use right now?" by querying metadata fields, not by reading documentation.</p>
+<p><strong>Semantic enrichment.</strong> Large language models can reason about data effectively when that data comes with rich contextual metadata — business term definitions, entity relationships, the calculation logic behind derived fields, the business rules that govern inclusion and exclusion, the known limitations and edge cases. Without this context, an LLM working with enterprise data is guessing about what the data means. It will make plausible but incorrect inferences, interpret ambiguous column names according to general knowledge rather than domain-specific definitions, and produce answers that sound authoritative but do not reflect the organization's actual business logic.</p>
+<p><strong>API accessibility through standardized protocols.</strong> Agentic AI systems need to call data products programmatically, dynamically, and at runtime — not through static pipelines pre-configured by data engineers. The emerging <strong>Model Context Protocol (MCP)</strong> standard provides a standardized client-server architecture through which AI agents can discover available tools and data sources, understand their capabilities, and invoke them with appropriate parameters. Data products that expose output ports through stable, documented, protocol-compliant APIs — REST, SQL, GraphQL, or MCP-native interfaces — are directly accessible to AI agents. Data products that serve data only through manually configured pipelines or access patterns requiring human coordination are invisible to agent-based systems.</p>
+<div class="callout warn">
+  <div class="callout-label">The Strategic Implication</div>
+  Organizations that have invested in a governed data product portfolio — with machine-readable contracts, semantic enrichment, API-accessible output ports, active quality monitoring, and versioned schemas — have built the foundation that makes AI at scale both possible and reliable. Organizations that have not face a different reality: AI systems that do not fail loudly, but fail silently, producing confident, plausible, and wrong outputs.
+</div>
+<p>Data products are not an analytics infrastructure investment that also happens to be useful for AI. They are the prerequisite for any enterprise AI program that intends to be reliable at scale.</p>
+</section>
+
+<section class="section" id="s10">
+<h2>10. Start Here — A Practitioner's Checklist</h2>
+<div class="verdict">
+  <h3>The starting point is not a platform decision, a tool purchase, or an organizational restructuring.</h3>
+  <p>It is a single question about a single asset: is there one dataset, one metric, one dashboard, or one ML model in your organization that enough people depend on — that causes enough friction when it breaks or is misunderstood — that it would justify treating it with genuine product discipline?</p>
+  <p>There is always an answer, and it is usually obvious. It is the revenue dashboard that three teams look at every Monday morning that occasionally shows a different number than the finance team's version. It is the customer churn model that nobody is quite sure how to interpret because the feature definitions were never documented. It is the Orders dataset that downstream teams constantly ask questions about because the schema changed six months ago and the catalog entry was never updated.</p>
+  <p>Start there. Not with a program. Not with a governance committee. Not with a platform build. With one asset and these ten questions.</p>
+</div>
+
+<p>A data asset that answers <strong>yes</strong> to all ten questions is a data product. An asset that answers no to most of them is a starting point — each no is a specific, addressable engineering and organizational problem, not an intractable barrier.</p>
+
+<div class="rec-item"><div class="rec-n">1</div><div><strong>Named owner with explicit operational accountability.</strong> Not who maintains the pipeline — who will respond when a consumer reports a quality issue at any time of day, and who is accountable for consumer satisfaction with this product over time.</div></div>
+<div class="rec-item"><div class="rec-n">2</div><div><strong>Named consumers and a specific use case.</strong> If you cannot name the consumers and describe their use case concretely, you do not have a product yet. You have an asset that someone might use someday.</div></div>
+<div class="rec-item"><div class="rec-n">3</div><div><strong>A machine-readable data contract.</strong> A specification of the schema, quality commitments, service levels, and terms of use that consumers can access without contacting the producing team.</div></div>
+<div class="rec-item"><div class="rec-n">4</div><div><strong>Automated quality rules on every execution.</strong> Not spot-checked. Not run monthly during audits. Automated and running on every execution, with alerts that reach the producing team before consumers notice failures.</div></div>
+<div class="rec-item"><div class="rec-n">5</div><div><strong>SLAs that are published, monitored, and backed by operational accountability.</strong> An on-call rotation, an escalation path, and a defined response window — not aspirational targets nobody enforces.</div></div>
+<div class="rec-item"><div class="rec-n">6</div><div><strong>Self-serve discoverability.</strong> A consumer can find and evaluate this product without asking a person for help — registered in a catalog with enough structured metadata to assess relevance and trustworthiness.</div></div>
+<div class="rec-item"><div class="rec-n">7</div><div><strong>Queryable lineage chain.</strong> Data can be traced from its output port back to its originating operational system through a machine-readable, queryable lineage chain.</div></div>
+<div class="rec-item"><div class="rec-n">8</div><div><strong>Schema versioning with a deprecation policy.</strong> A clear policy for backward compatibility and a formal deprecation process for breaking changes — not silent schema overwrites.</div></div>
+<div class="rec-item"><div class="rec-n">9</div><div><strong>Documented, stable output port interfaces.</strong> All output ports are accessible through documented, stable interfaces — not ad hoc query patterns that depend on institutional knowledge.</div></div>
+<div class="rec-item"><div class="rec-n">10</div><div><strong>A consumer feedback mechanism.</strong> The producing team has a process for receiving feedback from consumers and a process for evolving the product based on that feedback over time.</div></div>
+
+<p>Once the first product is in place, the scaling question is straightforward: <em>platform before programs</em>. Rather than requiring every domain team to figure out independently how to build data contracts, set up quality monitoring, manage lineage, and publish to a catalog, the data platform team should abstract those requirements into reusable capabilities — templates, libraries, automated tooling, and self-serve workflows that make doing the right thing easier than doing the wrong thing. When building a governed data product takes the same effort as building an ungoverned dataset, governance becomes the default rather than the exception.</p>
+<p>The full taxonomy — datasets, semantic models, metrics, dashboards, and AI artifacts — does not need to be productized simultaneously. Start with the tier that creates the most immediate governance pain. For most organizations, that is either the core dataset layer (the foundation everything depends on) or the metrics and semantic layer (where inconsistent definitions create the most visible and politically painful governance failures). Build disciplined products at one tier, establish the operating model, prove the value, and extend the discipline to the next.</p>
+<p>The direction of travel is clear. Every enterprise data program that intends to be a foundation for reliable AI is heading toward this model. Data products are not the destination. They are the infrastructure. The destination is an organization where data consumers — human and artificial — can find what they need, trust what they find, and build on it with confidence. That destination is only reachable from here.</p>
+</section>
+
+<section class="section" id="s11">
+<h2>11. References</h2>
+<p>This article synthesizes original practitioner analysis with reference to the following primary sources. No content has been reproduced verbatim.</p>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>Source</th><th>Link</th><th>Relevance</th></tr></thead>
+  <tbody>
+    <tr><td>Zhamak Dehghani — <em>Data Mesh: Delivering Data-Driven Value at Scale</em> (O'Reilly, 2022)</td><td><a href="https://www.oreilly.com/library/view/data-mesh/9781492092384/" target="_blank" rel="noopener">O'Reilly — Data Mesh</a></td><td>Foundational framework defining data products, domain ownership, self-serve infrastructure, and federated governance; source of the 8 data product attributes</td></tr>
+    <tr><td>Zhamak Dehghani — "How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh" (martinfowler.com, 2019)</td><td><a href="https://martinfowler.com/articles/data-monolith-to-mesh.html" target="_blank" rel="noopener">martinfowler.com — Data Mesh</a></td><td>Original article introducing the Data Mesh concept and the data product as a unit of analytical ownership</td></tr>
+    <tr><td>datamesh-architecture.com — Data Product Canvas</td><td><a href="https://www.datamesh-architecture.com/data-product-canvas" target="_blank" rel="noopener">Data Product Canvas</a></td><td>Eight-block design framework for collaborative data product specification; source of the canvas building blocks and design philosophy described in Section 5</td></tr>
+    <tr><td>Data Contract Specification (open standard)</td><td><a href="https://datacontract.com" target="_blank" rel="noopener">datacontract.com</a></td><td>YAML-based open standard for machine-readable, version-controlled data contracts; source of the six contract elements described in Section 6</td></tr>
+    <tr><td>Data Product Specification (open standard)</td><td><a href="https://dataproduct-specification.com" target="_blank" rel="noopener">dataproduct-specification.com</a></td><td>Machine-readable YAML standard for defining a complete data product with input/output port linkages to data contracts</td></tr>
+    <tr><td>Model Context Protocol (MCP)</td><td><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io</a></td><td>Standardized client-server protocol for AI agent access to tools and data sources; referenced in Section 9 as the emerging standard for AI-accessible data product output ports</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ═══ THE AUTHOR ═══ -->
+  <script src="../assets/js/author-bio-inject.js"></script>
+</section>
+
+</article>
+</div><!-- /page-wrap -->
+
+<!-- ═══ FOOTER ═══ -->
+<script src="../assets/js/site-footer-inject.js"></script>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script src="../assets/js/components.js"></script>
+<script>
+// Progress bar + back-to-top
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  document.getElementById('prog').style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+  document.getElementById('btt').classList.toggle('show', d.scrollTop > 400);
+});
+
+// Active TOC
+const secs = document.querySelectorAll('[id]');
+const links = document.querySelectorAll('.toc a, .toc-sub a');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.toc a[href="#${e.target.id}"], .toc-sub a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-64px 0px -65% 0px' });
+secs.forEach(s => io.observe(s));
+
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+    document.querySelector('.nav-toggle').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

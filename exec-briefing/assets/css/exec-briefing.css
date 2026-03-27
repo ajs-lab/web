@@ -1,0 +1,175 @@
+/*
+ * exec-briefing.css
+ * AJ's Data & AI Lab — Executive Briefing article styles
+ * Tokens, nav, sidebar, and footer are covered by ajs-lab-core-*.css.
+ * This file adds only what those do not provide.
+ */
+
+/* ═══════════════════════════════════════
+   READING PROGRESS BAR
+═══════════════════════════════════════ */
+#prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 9999;
+  background: linear-gradient(90deg, var(--blue-glow), var(--cyan));
+  transition: width .08s linear;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+/* ═══════════════════════════════════════
+   ARTICLE WRAP
+═══════════════════════════════════════ */
+.article-wrap {
+  padding: 2.4rem 2rem 3.5rem;
+}
+
+/* ═══════════════════════════════════════
+   BRIEFING HEADER
+═══════════════════════════════════════ */
+.briefing-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.briefing-eyebrow {
+  font-family: var(--mono); font-size: .62rem;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--blue-glow); margin-bottom: .75rem;
+}
+
+.briefing-header h1 {
+  font-family: var(--display); font-size: 1.65rem;
+  line-height: 1.2; color: var(--navy);
+  margin-bottom: .75rem;
+}
+
+.briefing-deck {
+  font-size: 1rem; font-style: italic;
+  color: var(--ink-soft); line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.briefing-meta {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: .6rem 1.2rem;
+  font-family: var(--mono); font-size: .62rem;
+  color: var(--ink-muted); text-transform: uppercase; letter-spacing: .07em;
+}
+
+.briefing-meta .sep { color: var(--rule); }
+
+/* ═══════════════════════════════════════
+   BRIEFING SECTIONS
+═══════════════════════════════════════ */
+.briefing-section { margin-bottom: 1.8rem; }
+
+.briefing-section-label {
+  font-family: var(--mono); font-size: .62rem;
+  text-transform: uppercase; letter-spacing: .13em;
+  color: var(--blue-glow); margin-bottom: .5rem;
+}
+
+.briefing-section p {
+  font-size: .94rem; color: var(--ink-soft); line-height: 1.82;
+}
+
+/* ═══════════════════════════════════════
+   WHAT THIS MEANS — BULLETS
+═══════════════════════════════════════ */
+.briefing-bullets {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+
+.briefing-bullets li {
+  position: relative;
+  font-size: .94rem; color: var(--ink-soft); line-height: 1.72;
+  padding-left: 1.4rem;
+}
+
+.briefing-bullets li::before {
+  content: '▸';
+  position: absolute; left: 0; top: .05em;
+  color: var(--blue-glow); font-size: .78rem;
+}
+
+.briefing-bullets li strong {
+  color: var(--ink); font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   PRACTITIONER'S TAKE
+═══════════════════════════════════════ */
+.practitioner-take {
+  background: var(--p-strategy-bg);
+  border: 1px solid rgba(6,145,231,.18);
+  border-left: 4px solid var(--blue-glow);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+  margin-top: 2rem;
+}
+
+.practitioner-take .briefing-section-label { color: var(--blue-glow); }
+
+.practitioner-take p {
+  font-size: .94rem; color: var(--ink-soft); line-height: 1.82;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════
+   SOURCE REFERENCES
+═══════════════════════════════════════ */
+.briefing-refs {
+  margin-top: 2.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+
+.refs-list {
+  margin: .6rem 0 0; padding-left: 1.2rem;
+  display: flex; flex-direction: column; gap: .5rem;
+}
+
+.refs-list li {
+  font-family: var(--mono); font-size: .68rem;
+  color: var(--ink-muted); line-height: 1.6;
+}
+
+.refs-list li a {
+  color: var(--blue-glow);
+  text-decoration: none;
+}
+
+.refs-list li a:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════ */
+.article-divider {
+  border: none; border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+/* ═══════════════════════════════════════
+   TAGS
+═══════════════════════════════════════ */
+.article-tags {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  margin-top: 2.2rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.article-tag {
+  font-family: var(--mono); font-size: .62rem;
+  color: var(--ink-muted); background: var(--page-2);
+  border: 1px solid var(--rule); padding: .2rem .6rem;
+  border-radius: 3px; letter-spacing: .03em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 680px) {
+  .article-wrap { padding: 1.8rem 1.2rem 3rem; }
+  .briefing-header h1 { font-size: 1.3rem; }
+}

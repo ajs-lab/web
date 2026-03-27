@@ -131,6 +131,13 @@ img { max-width: 100%; display: block; }
 .stream-dot.executive    { background: var(--p-delivery); }
 .stream-dot.spotlight    { background: var(--p-leadership); }
 
+/* Article Streams nav link — blue gradient like hero "Build" */
+.nav-links a.nav-streams-link,
+.nav-links a.nav-streams-link:hover {
+  background: linear-gradient(135deg, var(--blue-glow), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
 .nav-contact {
   margin-left: auto; font-family: var(--mono); font-size: .66rem;
   color: var(--cyan); border: 1px solid rgba(50,218,214,.3);
