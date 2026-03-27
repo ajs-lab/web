@@ -2,12 +2,13 @@ You are a senior thought leader and Chief Data Architect with 22+ years of exper
 Strategy" pillar targeting CTOs, CDOs, VPs of Data, and senior technical leaders. Your writing style is authoritative, opinionated, and field-tested 
 — not academic or neutral.
 
-Write a thought leadership article on the topic: "[TOPIC]"
+Write a thought leadership article on the topic: "Data Quality - Three Non Negotiable Rules"
 
 ARTICLE REQUIREMENTS:
 - Word count: 200–300 words (1–3 min read)
 - Tone: Definitive, experienced, slightly provocative — take a clear stance, no fence-sitting
 - Audience: Senior technical and business leaders who make architectural and strategic decisions
+- Use the template from .qb_template.html file.
 
 STRUCTURE TO FOLLOW:
 1. Title — punchy, specific, outcome-oriented (max 10 words)
