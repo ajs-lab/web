@@ -149,6 +149,7 @@ img { max-width: 100%; display: block; }
     position: absolute; top: 56px; left: 0; right: 0;
     background: var(--navy); border-bottom: 1px solid rgba(50,218,214,.12);
     padding: .5rem 0; z-index: 800;
+    max-height: calc(100vh - 56px); overflow-y: auto;
   }
   .nav-links.open a { padding: .6rem 2rem; border-radius: 0; }
   .nav-dropdown-menu { position: static; opacity: 1; pointer-events: auto; transform: none; border: none; padding-left: 1rem; box-shadow: none; }

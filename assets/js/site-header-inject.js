@@ -24,21 +24,21 @@
     '  <button class="nav-toggle" onclick="document.querySelector(\'.nav-links\').classList.toggle(\'open\')">&#9776;</button>' +
     '  <div class="nav-links">' +
     '    <a href="' + BASE + 'index.html" class="active">Home</a>' +
+    //'    <div class="nav-dropdown">' +
+    //'      <a href="#">Pillars</a>' +
+    //'      <div class="nav-dropdown-menu">' +
+    //'        <a href="#"><span class="pillar-dot strategy"></span><span>Data &amp; AI Strategy</span></a>' +
+    //'        <a href="#"><span class="pillar-dot innovation"></span><span>Products &amp; Platform Innovation</span></a>' +
+    //'        <a href="#"><span class="pillar-dot delivery"></span><span>Governed Execution at Scale</span></a>' +
+    //'        <a href="#"><span class="pillar-dot leadership"></span><span>Impact Through Leadership</span></a>' +
+    //'      </div>' +
+    //'    </div>' +
     '    <div class="nav-dropdown">' +
-    '      <a href="#">Pillars</a>' +
+    '      <a href="#">Article Streams</a>' +
     '      <div class="nav-dropdown-menu">' +
-    '        <a href="#"><span class="pillar-dot strategy"></span><span>Data &amp; AI Strategy</span></a>' +
-    '        <a href="#"><span class="pillar-dot innovation"></span><span>Products &amp; Platform Innovation</span></a>' +
-    '        <a href="#"><span class="pillar-dot delivery"></span><span>Governed Execution at Scale</span></a>' +
-    '        <a href="#"><span class="pillar-dot leadership"></span><span>Impact Through Leadership</span></a>' +
-    '      </div>' +
-    '    </div>' +
-    '    <div class="nav-dropdown">' +
-    '      <a href="#">Streams</a>' +
-    '      <div class="nav-dropdown-menu">' +
-    '        <a href="' + BASE + 'practitioner-series/"><span class="stream-dot practitioner"></span><span>Practitioner Series - Deep Dives</span></a>' +
+    '        <a href="' + BASE + 'practitioner-series/index.html"><span class="stream-dot practitioner"></span><span>Practitioner Series - Deep Dives</span></a>' +
     '        <a href="' + BASE + 'quick-bytes/index.html"><span class="stream-dot quickbytes"></span><span>Quick Bytes - Key Pointers</span></a>' +
-    '        <a href="' + BASE + 'executive-briefing/index.html"><span class="stream-dot executive"></span><span>Executive Briefing - For Decision Makers</span></a>' +
+    '        <a href="' + BASE + 'exec-briefing/index.html"><span class="stream-dot executive"></span><span>Executive Briefing - For Decision Makers</span></a>' +
     '        <a href="' + BASE + 'spotlight/index.html"><span class="stream-dot spotlight"></span><span>Spotlight - Shared Insights</span></a>' +
     '      </div>' +
     '    </div>' +
@@ -48,7 +48,12 @@
     '        <a href="https://github.com/ajs-lab/sparkdqx" target="_blank" rel="noopener"><span class="stream-dot practitioner"></span><span>Spark DQX</span></a>' +
     '      </div>' +
     '    </div>' +
-    '    <a href="' + BASE + 'about.html">About</a>' +
+    '    <div class="nav-dropdown">' +
+    '      <a href="#">About</a>' +
+    '      <div class="nav-dropdown-menu">' +
+    '        <a href="' + BASE + 'about/about-ajs-lab.html"><span class="stream-dot practitioner"></span><span>AJ\'s Data &amp; AI Lab</span></a>' +
+    '      </div>' +
+    '    </div>' +
     '    <a href="https://linkedin.com/in/arnayjoshi" target="_blank" rel="noopener" class="nav-contact">Connect &#8599;</a>' +
     '  </div>' +
     '</div>' +
@@ -59,7 +64,7 @@
     '    <div class="hero-text">' +
     '      <h1>Think · <em>Build · Deliver · </em>Lead</h1>' +
     '      <p class="hero-tagline" data-content="site.tagline">' +
-    '        Practitioner perspectives on building AI-driven enterprises — from strategy and innovation to execution at scale with leadership impact, from the trenches, not the textbook.' +
+    '        Practitioner perspectives on building AI-driven enterprises — from strategy and innovation to execution at scale with leadership impact. \nFrom the trenches, not the textbook.' +
     '      </p>' +
     '      <div class="hero-pillars">' +
     '        <span class="hero-pill strategy"  data-content="pillars.strategy.label">Data &amp; AI Strategy</span>' +
@@ -80,7 +85,7 @@
     '          </div>' +
     '        </div>' +
     '      </div>' +
-    '      <div class="hero-lab-caption" data-content="site.name">AJ\'S DATA &amp; AI LAB</div>' +
+    //'      <div class="hero-lab-caption" data-content="site.name">AJ\'S DATA &amp; AI LAB</div>' +
     '    </div>' +
     '  </div>' +
     '</section>';
