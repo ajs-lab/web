@@ -32,20 +32,11 @@ var ARTICLES = [
   },
   {
     stream:   'quickbytes',
-    pillar:   'innovation',
-    date:     'Feb 25, 2026',
-    title:    'Why Your RAG Pipeline Is Hallucinating \u2014 And How to Fix It',
-    href:     '#',
-    excerpt:  'Semantic chunking with overlap reduces context loss by 40% \u2014 chunking strategy matters more than model size.',
-    readTime: '3 min read'
-  },
-  {
-    stream:   'quickbytes',
-    pillar:   'delivery',
+    pillar:   'strategy',
     date:     'Feb 10, 2026',
-    title:    'Data Quality Is a Team Sport \u2014 Three Non-Negotiable Rules',
-    href:     '#',
-    excerpt:  'Every data contract must have a named human owner \u2014 not a team alias, not a Slack channel, a person.',
+    title:    'Data Quality Has Three Rules. You\u2019re Breaking All of Them.',
+    href:     'data-quality-three-non-negotiable-rules.html',
+    excerpt:  'Data quality is not a hygiene problem \u2014 it is a trust problem. Three non-negotiable rules every data leader must enforce.',
     readTime: '3 min read'
   },
 

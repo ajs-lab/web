@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Quality Has Three Rules. You're Breaking All of Them. | Quick Bytes | AJ's Data &amp; AI Lab</title>
+<meta name="description" content="Data quality isn't a hygiene problem — it's a trust problem. A practitioner's take on the three non-negotiable rules every data leader must enforce.">
+<meta name="author" content="Arnay Joshi">
+<meta property="og:title" content="Data Quality Has Three Rules. You're Breaking All of Them.">
+<meta property="og:description" content="Data quality isn't a hygiene problem — it's a trust problem. Three non-negotiable rules every data leader must enforce.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-footer.css">
+<link rel="stylesheet" href="./assets/css/quick-bytes.css">
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ═══ SITE NAV + HERO ═══ -->
+<script src="../assets/js/site-header-inject.js"></script>
+
+<!-- ═══ STREAM TAB ═══ -->
+<div class="streams-bar">
+  <div class="streams-inner">
+    <span class="streams-label">Stream:</span>
+    <span class="stream-chip active" data-stream="quickbytes" data-content="streams.quickbytes.label">Quick Bytes</span>
+  </div>
+</div>
+
+<!-- ═══ PAGE BODY ═══ -->
+<div class="main-wrap">
+
+  <main>
+
+    <!-- ═══ ARTICLE CONTENT ═══ -->
+    <article class="article-wrap">
+
+      <!-- Opening Hook -->
+      <p class="article-hook">
+        Data quality is not a hygiene problem — it is a trust problem. Every decision your organization
+        makes downstream of dirty data is built on a foundation that cannot be audited, verified, or
+        defended. You are not struggling because your analytics are immature; you are struggling because
+        the data feeding them was never held to a standard anyone agreed to or enforced.
+      </p>
+
+      <!-- Section 1: The Problem -->
+      <div class="article-section">
+        <div class="section-label">The Problem</div>
+        <h2>Ownership Voids Are Where Quality Goes to Die</h2>
+        <p>
+          The root cause of poor data quality is not missing tooling — it is the absence of named
+          accountability at the source. Most organizations have poured significant investment into
+          data infrastructure while treating quality as a shared responsibility across teams. Shared
+          responsibility is the organizational equivalent of no responsibility. Data degrades precisely
+          at ownership boundaries — between engineering and product, between domains, between the team
+          that creates a data asset and the team that consumes it three pipelines downstream. Until
+          a single accountable owner exists at the point of creation, no downstream intervention will
+          hold.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 2: Why It Happens -->
+      <div class="article-section">
+        <div class="section-label">Why It Happens</div>
+        <h2>Quality Was Designed Out Before the First Pipeline Was Built</h2>
+        <p>
+          The structural failure is treating data quality as a downstream cleanup operation rather
+          than an upstream contract. Engineering teams instrument pipelines for throughput and latency —
+          the metrics that get reviewed in sprint demos. Product teams ship features without defining
+          what "correct" looks like for the data those features generate. Leadership, focused on
+          dashboards and AI output, rarely asks the harder upstream question: what are the quality
+          guarantees on the data going in? The result is an architecture where correctness was never
+          a first-class requirement, and every layer of the stack inherits that original omission.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 3: Where It Breaks Down -->
+      <div class="article-section">
+        <div class="section-label">Where It Breaks Down</div>
+        <h2>Three Failure Modes That Expose the Same Structural Crack</h2>
+        <p>
+          The first crack appears in the boardroom: when two dashboards return different answers for
+          the same KPI, the organization stops trusting data entirely and replaces analysis with
+          politics. No one asks which number is correct — they ask which one supports the argument
+          they already planned to make. The second failure surfaces in production AI: models that
+          degrade over time are frequently not suffering from model staleness, but from upstream data
+          contracts that shifted quietly, altering the statistical profile of inputs without a single
+          alert firing. The third — and most irreversible — failure is the audit. When regulators or
+          internal governance teams ask for documented data lineage and none exists, no amount of
+          retroactive tooling resolves the exposure.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 4: What High-Performing Organizations Do Differently -->
+      <div class="article-section">
+        <div class="section-label">What High-Performing Organizations Do Differently</div>
+        <h2>Three Rules That Are Not Optional</h2>
+        <p>
+          High-performing data organizations enforce quality as a contract at the point of creation,
+          not a filter at the point of consumption — the team that produces the data owns its
+          correctness, not the team that eventually uses it. They instrument data quality with the
+          same operational rigor applied to system uptime: a broken data contract triggers a production
+          incident, not a backlog ticket. And critically, they define what "good" means for each data
+          asset before the asset is built — quality SLOs are authored alongside schema definitions,
+          not appended after the first complaint. These three rules are not best practices.
+          They are the minimum viable standard for any organization serious about decisions made from data.
+        </p>
+      </div>
+
+      <!-- Closing: The Leadership Imperative -->
+      <div class="closing-block">
+        <div class="section-label">The Leadership Imperative</div>
+        <h2>The Quality Problem Is a Leadership Decision You Have Been Deferring</h2>
+        <p>
+          Every CDO and VP of Data who continues to fund downstream AI and analytics programs without
+          first auditing whether upstream quality standards exist — and are enforced — is not managing
+          a data problem. They are manufacturing one, at scale, with compounding interest. Data quality
+          does not degrade because engineers are careless. It degrades because leaders do not make
+          correctness a named, measured, and consequential expectation. That accountability does not
+          belong in a tool. It belongs on your desk.
+        </p>
+      </div>
+
+      <!-- Tags -->
+      <div class="article-tags">
+        <span class="article-tag">Data Quality</span>
+        <span class="article-tag">Data Strategy</span>
+        <span class="article-tag">Data Governance</span>
+        <span class="article-tag">Data Architecture</span>
+        <span class="article-tag">CDO</span>
+        <span class="article-tag">AI Strategy</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <script src="../assets/js/author-bio-inject.js"></script>
+  </aside>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<script src="../assets/js/site-footer-inject.js"></script>
+
+<script src="../assets/js/components.js"></script>
+
+<script>
+// Reading progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+}, { passive: true });
+</script>
+
+</body>
+</html>
