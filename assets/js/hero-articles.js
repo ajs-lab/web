@@ -52,32 +52,22 @@ var ARTICLES = [
   /* ── Executive Briefing ── */
   {
     stream:   'executive',
-    pillar:   'leadership',
-    date:     'Feb 22, 2026',
-    title:    'HBR: \u201cThe Leader\u2019s Guide to Data-Driven Decision Making\u201d \u2014 A Practitioner\u2019s Take',
-    href:     '#',
-    excerpt:  "The gap isn\u2019t in decision frameworks \u2014 it\u2019s in data literacy at the executive layer. My commentary on what the article gets right and where it falls short.",
-    readTime: '7 min read'
+    pillar:   'strategy',
+    date:     'Mar 27, 2026',
+    title:    'The AI Bubble Is Leaking \u2014 What Smart Leaders Should Do Before It Bursts',
+    href:     'exec-briefing/ai-bubble-what-smart-leaders-should-do.html',
+    excerpt:  'The AI spending frenzy is running into hard reality. Leaders who act now on value realization \u2014 not hype \u2014 will be the ones still standing when the correction comes.',
+    readTime: '2 min read'
   },
   {
     stream:   'executive',
     pillar:   'strategy',
-    date:     'Feb 5, 2026',
-    title:    'Why Your AI Transformation Is Stalling \u2014 And It\u2019s Not the Technology',
-    href:     '#',
-    excerpt:  'Governance gaps, talent misalignment, and unclear ownership are the real blockers. A short briefing on the organizational fixes that unblock AI programs.',
-    readTime: '6 min read'
+    date:     'Mar 20, 2026',
+    title:    'From Tool to Coworker: How Agentic AI Rewrites the Management Playbook',
+    href:     'exec-briefing/agentic-ai-management-playbook.html',
+    excerpt:  'AI agents are no longer experimental. They plan, act, and learn on their own. The management frameworks your organization runs on were not designed for this \u2014 and the gap is already costing leaders real value.',
+    readTime: '2 min read'
   },
-  {
-    stream:   'executive',
-    pillar:   'leadership',
-    date:     'Jan 20, 2026',
-    title:    'The CDO\u2019s Dilemma: Governing AI Output Without Slowing Innovation',
-    href:     '#',
-    excerpt:  'The right governance posture for AI is not a checkpoint \u2014 it\u2019s a design pattern. What enterprise data leaders need to get right in 2026.',
-    readTime: '8 min read'
-  },
-
   /* ── Spotlight ── */
   {
     stream:   'spotlight',
