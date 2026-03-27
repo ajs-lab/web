@@ -247,6 +247,21 @@
 .pillar-icon--all       { background: var(--rule); }
 .pillar-count { font-family: var(--mono); font-size: .58rem; color: var(--ink-muted); margin-left: auto; }
 
+/* Pillar filter — hide cards on stream index pages (no carousel manages display here) */
+.article-card.pillar-hidden { display: none !important; }
+
+/* Stream index — flat grid with comfortable spacing */
+.stream-index-feed { padding: 2rem 0; }
+.section-feed.stream-index-feed--single { grid-template-columns: 1fr; }
+
+/* Back-to-streams link inside page-hero */
+.stream-back-link {
+  display: inline-block; margin-bottom: .6rem;
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .06em;
+  color: rgba(50,218,214,.6); text-decoration: none; transition: color .15s;
+}
+.stream-back-link:hover { color: var(--cyan); }
+
 .stream-link {
   display: flex; align-items: center; gap: .4rem;
   padding: .3rem; font-size: .73rem; color: var(--ink-soft);
@@ -287,6 +302,28 @@
   color: var(--white-glow); line-height: 1.15; margin-bottom: .4rem; letter-spacing: -.01em;
 }
 .page-hero p { font-family: var(--serif); font-size: .9rem; color: rgba(243,250,252,.4); max-width: 560px; line-height: 1.6; }
+
+/* Compact variant — slim single-line stream banner */
+.page-hero--compact {
+  background: linear-gradient(180deg, #111d40 0%, #0b1632 100%);
+  padding: .38rem 2rem;
+  border-bottom: 1px solid rgba(6,145,231,.2);
+}
+.page-hero--compact::before { display: none; }
+.page-hero--compact .page-hero-label {
+  font-size: .65rem; letter-spacing: .1em;
+  color: var(--p-strategy); margin-bottom: 0;
+  text-decoration: none;
+}
+.page-hero--compact .page-hero-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.page-hero--compact a.page-hero-label {
+  opacity: .55; transition: color .15s, opacity .15s;
+}
+.page-hero--compact a.page-hero-label:hover {
+  opacity: 1; color: var(--cyan);
+}
 
 /* ═══════════════════════════════════════
    TAB BAR — pillar/stream selector
@@ -479,12 +516,25 @@
   gap: 1.5rem;
   margin-bottom: 1.4rem;
 }
+.section-hd-meta {
+  padding-left: .75rem;
+}
 .section-hd-meta h2 {
   font-family: var(--display);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   color: var(--navy);
   margin: 0;
   line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.stream-title-sub {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 400;
+  letter-spacing: .06em;
+  color: var(--muted);
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 .section-view-all {
   font-family: var(--mono);

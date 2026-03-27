@@ -26,21 +26,18 @@
     '      </p>' +
     '    </div>' +
     '    <div>' +
-    '      <div class="footer-heading">Pillars</div>' +
+    '      <div class="footer-heading">Article Streams</div>' +
     '      <div class="footer-links">' +
-    '        <a href="#">Data &amp; AI Strategy</a>' +
-    '        <a href="#">Products &amp; Platform Innovation</a>' +
-    '        <a href="#">Governed Execution at Scale</a>' +
-    '        <a href="#">Impact Through Leadership</a>' +
+    '        <a href="' + BASE + 'practitioner-series/index.html">Practitioner Series - Deep Dives</a>' +
+    '        <a href="' + BASE + 'quick-bytes/index.html">Quick Bytes - Key Pointers</a>' +
+    '        <a href="' + BASE + 'exec-briefing/index.html">Executive Briefing - For Decision Makers</a>' +
+    '        <a href="' + BASE + 'spotlight/index.html">Spotlight - Shared Insights</a>' +
     '      </div>' +
     '    </div>' +
     '    <div>' +
-    '      <div class="footer-heading">Streams</div>' +
+    '      <div class="footer-heading">IPs &amp; Products</div>' +
     '      <div class="footer-links">' +
-    '        <a href="' + BASE + 'practitioner-series/">Practitioner Series - Deep Dives</a>' +
-    '        <a href="' + BASE + 'quick-bytes/index.html">Quick Bytes - Key Pointers</a>' +
-    '        <a href="' + BASE + 'executive-briefing/index.html">Executive Briefing - For Decision Makers</a>' +
-    '        <a href="' + BASE + 'spotlight/index.html">Spotlight - Shared Insights</a>' +
+    '        <a href="https://github.com/ajs-lab/sparkdqx" target="_blank" rel="noopener">Spark DQX</a>' +
     '      </div>' +
     '    </div>' +
     '  </div>' +

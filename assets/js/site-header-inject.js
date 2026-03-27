@@ -34,11 +34,11 @@
     //'      </div>' +
     //'    </div>' +
     '    <div class="nav-dropdown">' +
-    '      <a href="#">Streams</a>' +
+    '      <a href="#">Article Streams</a>' +
     '      <div class="nav-dropdown-menu">' +
-    '        <a href="' + BASE + 'practitioner-series/"><span class="stream-dot practitioner"></span><span>Practitioner Series - Deep Dives</span></a>' +
+    '        <a href="' + BASE + 'practitioner-series/index.html"><span class="stream-dot practitioner"></span><span>Practitioner Series - Deep Dives</span></a>' +
     '        <a href="' + BASE + 'quick-bytes/index.html"><span class="stream-dot quickbytes"></span><span>Quick Bytes - Key Pointers</span></a>' +
-    '        <a href="' + BASE + 'executive-briefing/index.html"><span class="stream-dot executive"></span><span>Executive Briefing - For Decision Makers</span></a>' +
+    '        <a href="' + BASE + 'exec-briefing/index.html"><span class="stream-dot executive"></span><span>Executive Briefing - For Decision Makers</span></a>' +
     '        <a href="' + BASE + 'spotlight/index.html"><span class="stream-dot spotlight"></span><span>Spotlight - Shared Insights</span></a>' +
     '      </div>' +
     '    </div>' +

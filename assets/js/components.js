@@ -179,11 +179,15 @@ AJSLab.buildSection = function (stream, articles, pillars) {
   var streamArticles = articles.filter(function (a) { return a.stream === stream.id; });
   if (!streamArticles.length) return null;
 
+  var titleParts = stream.title.split(' \u2014 ');
+  var titleMain  = titleParts[0];
+  var titleSub   = titleParts[1] ? ' \u2014 <span class="stream-title-sub">' + titleParts[1] + '</span>' : '';
+
   var section = document.createElement('div');
   section.className = 'stream-section';
   section.innerHTML =
     '<div class="section-hd">' +
-      '<div class="section-hd-meta"><h2>' + stream.title + '</h2></div>' +
+      '<div class="section-hd-meta"><h2>' + titleMain + titleSub + '</h2></div>' +
       '<a href="' + stream.href + '" class="section-view-all">' + stream.viewAll + '</a>' +
     '</div>' +
     '<div class="section-carousel">' +
