@@ -184,7 +184,7 @@ AJSLab.buildSection = function (stream, articles, pillars) {
   var titleSub   = titleParts[1] ? ' \u2014 <span class="stream-title-sub">' + titleParts[1] + '</span>' : '';
 
   var section = document.createElement('div');
-  section.className = 'stream-section';
+  section.className = 'stream-section stream-' + stream.id;
   section.innerHTML =
     '<div class="section-hd">' +
       '<div class="section-hd-meta"><h2>' + titleMain + titleSub + '</h2></div>' +

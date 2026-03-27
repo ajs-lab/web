@@ -24,17 +24,8 @@
     '  <button class="nav-toggle" onclick="document.querySelector(\'.nav-links\').classList.toggle(\'open\')">&#9776;</button>' +
     '  <div class="nav-links">' +
     '    <a href="' + BASE + 'index.html" class="active">Home</a>' +
-    //'    <div class="nav-dropdown">' +
-    //'      <a href="#">Pillars</a>' +
-    //'      <div class="nav-dropdown-menu">' +
-    //'        <a href="#"><span class="pillar-dot strategy"></span><span>Data &amp; AI Strategy</span></a>' +
-    //'        <a href="#"><span class="pillar-dot innovation"></span><span>Products &amp; Platform Innovation</span></a>' +
-    //'        <a href="#"><span class="pillar-dot delivery"></span><span>Governed Execution at Scale</span></a>' +
-    //'        <a href="#"><span class="pillar-dot leadership"></span><span>Impact Through Leadership</span></a>' +
-    //'      </div>' +
-    //'    </div>' +
     '    <div class="nav-dropdown">' +
-    '      <a href="#">Article Streams</a>' +
+    '      <a href="#" class="nav-streams-link">Article Streams</a>' +
     '      <div class="nav-dropdown-menu">' +
     '        <a href="' + BASE + 'practitioner-series/index.html"><span class="stream-dot practitioner"></span><span>Practitioner Series - Deep Dives</span></a>' +
     '        <a href="' + BASE + 'quick-bytes/index.html"><span class="stream-dot quickbytes"></span><span>Quick Bytes - Key Pointers</span></a>' +
