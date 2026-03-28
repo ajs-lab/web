@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AJ's Lab — Link Checker</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f4; color: #1a1a1a; padding: 2rem; }
+  h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
+  .url-bar { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+  .url-bar input { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+  .btn { padding: 8px 18px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; white-space: nowrap; }
+  .btn:hover { background: #333; }
+  .btn:disabled { background: #999; cursor: default; }
+  .stats { display: flex; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .stat { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 12px 16px; min-width: 110px; }
+  .stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .stat-value { font-size: 22px; font-weight: 600; }
+  .stat-value.green { color: #1a7a4a; }
+  .stat-value.red { color: #c0392b; }
+  .stat-value.amber { color: #d4860a; }
+  .stat-value.blue { color: #185FA5; }
+  .progress-bar { height: 4px; background: #e5e5e5; border-radius: 2px; margin-bottom: 1.5rem; overflow: hidden; }
+  .progress-fill { height: 100%; background: #1a7a4a; border-radius: 2px; transition: width 0.3s; }
+  .section { margin-bottom: 1rem; }
+  .section-header { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; padding: 6px 12px; border-radius: 6px; margin-bottom: 6px; }
+  .section-header.ok { background: #eafaf1; color: #1a7a4a; }
+  .section-header.fail { background: #fdf3f3; color: #c0392b; }
+  .section-header.skip { background: #fef9ec; color: #d4860a; }
+  .link-row { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #fff; border: 0.5px solid #e5e5e5; border-radius: 6px; margin-bottom: 4px; font-size: 13px; }
+  .link-row:hover { border-color: #bbb; }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+  .badge.ok { background: #eafaf1; color: #1a7a4a; }
+  .badge.fail { background: #fdf3f3; color: #c0392b; }
+  .badge.skip { background: #fef9ec; color: #d4860a; }
+  .badge.pending { background: #eef2ff; color: #4358d4; }
+  .tag { font-size: 10px; background: #f0eeec; color: #666; padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+  .link-url { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #333; }
+  .link-url a { color: #185FA5; text-decoration: none; }
+  .link-url a:hover { text-decoration: underline; }
+  .msg { font-size: 12px; color: #999; }
+  .log { font-size: 12px; color: #666; background: #f0f0f0; padding: 8px 12px; border-radius: 6px; margin-bottom: 1rem; max-height: 60px; overflow: hidden; }
+  .empty { text-align: center; padding: 3rem; color: #aaa; font-size: 14px; }
+</style>
+</head>
+<body>
+<h1>Link Checker</h1>
+<p class="subtitle">Crawls a page via a CORS proxy and checks every link — header, footer, nav, and aside</p>
+
+<div class="url-bar">
+  <input type="text" id="urlInput" value="https://ajs-lab.github.io/web/" placeholder="https://..." />
+  <button class="btn" id="startBtn" onclick="startCheck()">Check Links</button>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Total</div><div class="stat-value blue" id="statTotal">—</div></div>
+  <div class="stat"><div class="stat-label">OK</div><div class="stat-value green" id="statOk">—</div></div>
+  <div class="stat"><div class="stat-label">Broken</div><div class="stat-value red" id="statFail">—</div></div>
+  <div class="stat"><div class="stat-label">Skipped</div><div class="stat-value amber" id="statSkip">—</div></div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+<div id="logLine" class="log" style="display:none"></div>
+
+<div id="results"></div>
+
+<script>
+const PROXY = 'https://api.allorigins.win/raw?url=';
+
+async function fetchHTML(url) {
+  const res = await fetch(PROXY + encodeURIComponent(url));
+  if (!res.ok) throw new Error('Proxy fetch failed: ' + res.status);
+  return res.text();
+}
+
+function extractLinks(html, base) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const links = [];
+  const seen = new Set();
+
+  function getSection(el) {
+    const tags = ['header','footer','nav','aside','main'];
+    let cur = el;
+    while (cur && cur !== doc.body) {
+      const tag = cur.tagName && cur.tagName.toLowerCase();
+      if (tags.includes(tag)) return tag;
+      const role = cur.getAttribute && cur.getAttribute('role');
+      if (role === 'banner') return 'header';
+      if (role === 'contentinfo') return 'footer';
+      if (role === 'navigation') return 'nav';
+      if (role === 'complementary') return 'aside';
+      const cls = (cur.className || '').toLowerCase();
+      if (/header/.test(cls)) return 'header';
+      if (/footer/.test(cls)) return 'footer';
+      if (/nav|menu/.test(cls)) return 'nav';
+      if (/aside|sidebar/.test(cls)) return 'aside';
+      cur = cur.parentElement;
+    }
+    return 'body';
+  }
+
+  doc.querySelectorAll('a[href]').forEach(a => {
+    const raw = a.getAttribute('href');
+    if (!raw || raw.startsWith('#') || raw.startsWith('javascript:') || raw.startsWith('mailto:') || raw.startsWith('tel:')) return;
+    try {
+      const abs = new URL(raw, base).href;
+      const key = abs + '|' + getSection(a);
+      if (seen.has(key)) return;
+      seen.add(key);
+      links.push({
+        url: abs,
+        text: (a.textContent || '').trim().slice(0, 60) || raw,
+        section: getSection(a),
+        raw
+      });
+    } catch(e) {}
+  });
+  return links;
+}
+
+async function checkLink(url) {
+  try {
+    const res = await fetch(PROXY + encodeURIComponent(url), { method: 'HEAD', signal: AbortSignal.timeout(10000) });
+    return { ok: res.ok || res.status === 405, status: res.status };
+  } catch(e) {
+    try {
+      const res2 = await fetch(PROXY + encodeURIComponent(url), { signal: AbortSignal.timeout(10000) });
+      return { ok: res2.ok, status: res2.status };
+    } catch(e2) {
+      return { ok: false, status: 'Error', error: e2.message };
+    }
+  }
+}
+
+function isSkippable(url) {
+  return /^(mailto:|tel:|javascript:|#)/.test(url) ||
+    /(twitter\.com|x\.com|linkedin\.com|facebook\.com|instagram\.com|youtube\.com)/.test(url);
+}
+
+let results = [];
+
+function updateStats() {
+  const ok = results.filter(r => r.status === 'ok').length;
+  const fail = results.filter(r => r.status === 'fail').length;
+  const skip = results.filter(r => r.status === 'skip').length;
+  document.getElementById('statTotal').textContent = results.length;
+  document.getElementById('statOk').textContent = ok;
+  document.getElementById('statFail').textContent = fail;
+  document.getElementById('statSkip').textContent = skip;
+}
+
+function renderResults() {
+  const container = document.getElementById('results');
+  if (results.length === 0) { container.innerHTML = '<div class="empty">No links found yet.</div>'; return; }
+
+  const sections = ['header', 'nav', 'aside', 'footer', 'body'];
+  let html = '';
+
+  const fails = results.filter(r => r.status === 'fail');
+  if (fails.length) {
+    html += `<div class="section"><div class="section-header fail">Broken links (${fails.length})</div>`;
+    fails.forEach(r => html += renderRow(r));
+    html += '</div>';
+  }
+
+  sections.forEach(sec => {
+    const group = results.filter(r => r.section === sec && r.status !== 'fail');
+    if (!group.length) return;
+    const label = sec.charAt(0).toUpperCase() + sec.slice(1);
+    const allOk = group.every(r => r.status === 'ok');
+    html += `<div class="section"><div class="section-header ${allOk ? 'ok' : 'skip'}">${label} (${group.length})</div>`;
+    group.forEach(r => html += renderRow(r));
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function renderRow(r) {
+  let badge, badgeClass;
+  if (r.status === 'ok') { badge = '✓ ' + r.code; badgeClass = 'ok'; }
+  else if (r.status === 'fail') { badge = '✗ ' + r.code; badgeClass = 'fail'; }
+  else if (r.status === 'skip') { badge = 'Skipped'; badgeClass = 'skip'; }
+  else { badge = 'Checking…'; badgeClass = 'pending'; }
+
+  return `<div class="link-row">
+    <span class="badge ${badgeClass}">${badge}</span>
+    <span class="tag">${r.section}</span>
+    <span class="link-url"><a href="${r.url}" target="_blank">${r.text || r.url}</a></span>
+    <span class="msg" style="min-width:200px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:#999;font-size:11px;">${r.url}</span>
+  </div>`;
+}
+
+async function startCheck() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) return;
+  results = [];
+  document.getElementById('results').innerHTML = '<div class="empty">Fetching page…</div>';
+  document.getElementById('startBtn').disabled = true;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('logLine').style.display = 'block';
+  document.getElementById('logLine').textContent = 'Fetching ' + url + '…';
+  updateStats();
+
+  let html;
+  try {
+    html = await fetchHTML(url);
+  } catch(e) {
+    document.getElementById('results').innerHTML = '<div class="empty" style="color:#c0392b">Could not fetch page: ' + e.message + '</div>';
+    document.getElementById('startBtn').disabled = false;
+    return;
+  }
+
+  const links = extractLinks(html, url);
+  document.getElementById('logLine').textContent = `Found ${links.length} links. Checking…`;
+
+  if (!links.length) {
+    document.getElementById('results').innerHTML = '<div class="empty">No links found on page. The page may be JS-rendered.</div>';
+    document.getElementById('startBtn').disabled = false;
+    return;
+  }
+
+  results = links.map(l => ({ ...l, status: 'pending', code: '…' }));
+  renderResults();
+  updateStats();
+
+  const CONCURRENCY = 4;
+  let done = 0;
+
+  async function checkOne(r) {
+    if (isSkippable(r.url)) {
+      r.status = 'skip'; r.code = 'Social/mailto';
+    } else {
+      const res = await checkLink(r.url);
+      r.status = res.ok ? 'ok' : 'fail';
+      r.code = res.status;
+    }
+    done++;
+    document.getElementById('progressFill').style.width = (done / results.length * 100) + '%';
+    document.getElementById('logLine').textContent = `Checking ${done}/${results.length}: ${r.text || r.url}`;
+    updateStats();
+    renderResults();
+  }
+
+  for (let i = 0; i < results.length; i += CONCURRENCY) {
+    await Promise.all(results.slice(i, i + CONCURRENCY).map(checkOne));
+  }
+
+  document.getElementById('logLine').textContent = `Done! Checked ${results.length} links.`;
+  document.getElementById('startBtn').disabled = false;
+}
+</script>
+</body>
+</html>
