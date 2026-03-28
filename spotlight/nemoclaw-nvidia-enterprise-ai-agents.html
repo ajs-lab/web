@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NemoClaw: NVIDIA Brings Order to the AI Agent Chaos | Spotlight | AJ's Data &amp; AI Lab</title>
+<meta name="description" content="OpenClaw made autonomous AI agents viral — but insecure. NemoClaw is NVIDIA's enterprise fix, wrapping open-source agent flexibility with governance, sandboxing, and compliance in a single command.">
+<meta name="author" content="Arnay Joshi">
+<meta property="og:title" content="NemoClaw: NVIDIA Brings Order to the AI Agent Chaos">
+<meta property="og:description" content="OpenClaw made autonomous AI agents viral — but not enterprise-ready. NemoClaw is NVIDIA's fix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-header.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-body.css">
+<link rel="stylesheet" href="../assets/css/ajs-lab-core-footer.css">
+<link rel="stylesheet" href="./assets/css/spotlight.css">
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ═══ SITE NAV + HERO ═══ -->
+<script src="../assets/js/site-header-inject.js"></script>
+
+<!-- ═══ STREAM TAB ═══ -->
+<div class="streams-bar">
+  <div class="streams-inner">
+    <span class="streams-label">Article Stream</span>
+    <a class="stream-chip active" href="index.html" data-stream="spotlight" data-content="streams.spotlight.label">Spotlight</a>
+  </div>
+</div>
+
+<!-- ═══ PAGE BODY ═══ -->
+<div class="main-wrap">
+
+  <main>
+
+    <!-- ═══ ARTICLE CONTENT ═══ -->
+    <article class="article-wrap">
+
+      <!-- Opening Hook -->
+      <p class="article-hook">
+        OpenClaw made autonomous AI agents viral — local, powerful, fast. It also made them a security
+        problem. NemoClaw is NVIDIA's answer: enterprise governance wrapped around open-source agent
+        flexibility, deployable in a single command.
+      </p>
+
+      <!-- Section 1 -->
+      <div class="article-section">
+        <div class="section-label">The Problem It Solves</div>
+        <h2>Open-Source Agents Were Built for Developers, Not Enterprises</h2>
+        <p>
+          OpenClaw's rise demonstrated real demand for autonomous, locally-run AI agents. But the
+          security posture it shipped with — malicious skill injection, exposed instances, agents
+          acting outside any permission boundary — was never going to survive a security review.
+          Enterprise teams could see the value clearly and block deployment just as clearly. NemoClaw,
+          announced at GTC 2026, is NVIDIA's direct response to that gap.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 2 -->
+      <div class="article-section">
+        <div class="section-label">What's Different</div>
+        <h2>Governance Baked In, Not Bolted On</h2>
+        <p>
+          The architecture makes four concrete additions. A sandboxed runtime — OpenShell — blocks
+          unauthorized API calls and restricts filesystem access at the agent level. A privacy router
+          governs whether agents route to local models or cloud endpoints, within defined policy
+          boundaries rather than developer discretion. The stack is hardware agnostic, running on
+          NVIDIA, AMD, and Intel. And the compliance targeting is explicit: SOC 2 and GDPR, not
+          aspirational statements in a README.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 3 -->
+      <div class="article-section">
+        <div class="section-label">Why It Matters</div>
+        <h2>The Question Has Shifted from Capability to Governance</h2>
+        <p>
+          NemoClaw is the first framework that meaningfully bridges open-source agent flexibility
+          with enterprise governance requirements. That matters more than any individual feature.
+          The conversation inside most large organizations has already moved past <em>can we run
+          agents</em> — the question is how to govern them at scale without rebuilding every
+          control plane from scratch. Jensen Huang's framing at GTC was deliberate: "Every CEO needs
+          an OpenClaw strategy — just like Linux, just like HTTP." NemoClaw is the enterprise
+          on-ramp to that strategy.
+        </p>
+      </div>
+
+      <hr class="article-divider">
+
+      <!-- Section 4 -->
+      <div class="article-section">
+        <div class="section-label">Honest Caveats</div>
+        <h2>Early Preview — Verify Before You Plan Around It</h2>
+        <p>
+          This is still a preview release. No third-party benchmarks exist yet, and cross-hardware
+          performance claims are unverified in production conditions. Licensing terms are still being
+          finalized — a detail that matters significantly for enterprise procurement and legal review.
+          Track it, pilot it where you can, but don't architect a governance layer around unconfirmed
+          specifications.
+        </p>
+      </div>
+
+      <!-- Closing Block -->
+      <div class="closing-block">
+        <div class="section-label">The Bigger Signal</div>
+        <h2>NVIDIA Is Not Just a Chip Company Anymore</h2>
+        <p>
+          NemoClaw signals something beyond a security wrapper. NVIDIA is positioning itself as the
+          infrastructure layer for enterprise agentic AI — not just the hardware beneath it. If that
+          bet lands, the platform decisions organizations make in the next 12 months will have the
+          same long-term weight as early cloud migration choices. That's the context worth bringing
+          into your next AI strategy conversation.
+        </p>
+      </div>
+
+      <!-- Tags -->
+      <div class="article-tags">
+        <span class="article-tag">NVIDIA</span>
+        <span class="article-tag">AI Agents</span>
+        <span class="article-tag">Enterprise Governance</span>
+        <span class="article-tag">GTC 2026</span>
+        <span class="article-tag">Agentic AI</span>
+        <span class="article-tag">Security</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <script src="../assets/js/author-bio-inject.js"></script>
+  </aside>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<script src="../assets/js/site-footer-inject.js"></script>
+
+<script src="../assets/js/components.js"></script>
+
+<script>
+// Reading progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+}, { passive: true });
+</script>
+
+</body>
+</html>
