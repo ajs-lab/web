@@ -1,0 +1,121 @@
+/*
+ * spotlight.css
+ * AJ's Data & AI Lab — Spotlight article styles
+ * Tokens, reset, nav, sidebar, streams-bar, and footer are
+ * already covered by ajs-lab-core-header/body/footer.css.
+ * This file adds only what those three do not provide.
+ */
+
+/* ═══════════════════════════════════════
+   READING PROGRESS BAR
+═══════════════════════════════════════ */
+#prog {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 9999;
+  background: linear-gradient(90deg, var(--blue-glow), var(--cyan));
+  transition: width .08s linear;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+/* ═══════════════════════════════════════
+   ARTICLE BODY
+═══════════════════════════════════════ */
+.article-wrap {
+  padding: 2.4rem 2rem 3.5rem;
+}
+
+.article-hook {
+  font-size: 1.06rem; font-weight: 600; font-style: italic; line-height: 1.7;
+  color: var(--ink); margin-bottom: 2.2rem;
+  border-left: 4px solid var(--blue-glow);
+  padding-left: 1.1rem;
+}
+
+.article-section { margin-bottom: 1.8rem; }
+
+.section-label {
+  font-family: var(--mono); font-size: .62rem;
+  text-transform: uppercase; letter-spacing: .13em;
+  color: var(--blue-glow); margin-bottom: .35rem;
+}
+
+.article-section h2 {
+  font-family: var(--display); font-size: 1.12rem;
+  color: var(--ink); margin-bottom: .65rem; line-height: 1.25;
+}
+.article-section p {
+  font-size: .94rem; color: var(--ink-soft); line-height: 1.82;
+}
+
+.article-divider {
+  border: none; border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+/* Closing block */
+.closing-block {
+  background: var(--p-strategy-bg);
+  border: 1px solid rgba(6,145,231,.2);
+  border-left: 4px solid var(--blue-glow);
+  border-radius: var(--radius); padding: 1.6rem 1.8rem;
+  margin-top: 2.2rem;
+}
+.closing-block .section-label { color: var(--blue-glow); }
+.closing-block h2 {
+  font-family: var(--display); font-size: 1.08rem;
+  color: var(--navy); margin-bottom: .65rem;
+}
+.closing-block p {
+  font-size: .93rem; color: var(--ink-soft); line-height: 1.82;
+}
+
+/* ═══════════════════════════════════════
+   GITHUB CALLOUT
+═══════════════════════════════════════ */
+.github-callout {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--page-2);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--blue-glow);
+  border-radius: var(--radius);
+  padding: 1rem 1.4rem;
+  margin-top: 1.4rem;
+}
+.github-callout svg {
+  flex-shrink: 0; opacity: .75;
+}
+.github-callout-text {
+  display: flex; flex-direction: column; gap: .18rem;
+}
+.github-callout-label {
+  font-family: var(--mono); font-size: .6rem;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--blue-glow);
+}
+.github-callout a {
+  font-family: var(--mono); font-size: .88rem;
+  color: var(--ink); text-decoration: none;
+  font-weight: 600;
+}
+.github-callout a:hover { color: var(--blue-glow); text-decoration: underline; }
+
+/* ═══════════════════════════════════════
+   TAGS
+═══════════════════════════════════════ */
+.article-tags {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  margin-top: 2.2rem; padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+.article-tag {
+  font-family: var(--mono); font-size: .62rem;
+  color: var(--ink-muted); background: var(--page-2);
+  border: 1px solid var(--rule); padding: .2rem .6rem;
+  border-radius: 3px; letter-spacing: .03em;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 680px) {
+  .article-wrap { padding: 1.8rem 1.2rem 3rem; }
+}

@@ -48,8 +48,22 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   var feed = document.getElementById('stream-feed');
-  ARTICLES.forEach(function (a) { feed.appendChild(AJSLab.buildCard(a, PILLARS)); });
-
+  ARTICLES.forEach(function (a) {
+    var card = AJSLab.buildCard(a, PILLARS);
+    if (a.keyPointers && a.keyPointers.length) {
+      var body = card.querySelector('.card-body');
+      var footer = card.querySelector('.card-footer');
+      var ol = document.createElement('ol');
+      ol.className = 'qb-pointers';
+      a.keyPointers.forEach(function (pt) {
+        var li = document.createElement('li');
+        li.textContent = pt;
+        ol.appendChild(li);
+      });
+      body.insertBefore(ol, footer);
+    }
+    feed.appendChild(card);
+  });
 });
 </script>
 </body>
